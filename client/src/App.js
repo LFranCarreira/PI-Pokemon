@@ -1,10 +1,21 @@
+import React from 'react';
 import './App.css';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+
+import Landing from './components/LandingPage/Landing.jsx'
+
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <h1>Henry Pokemon</h1>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+
+
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,21 +1,17 @@
-const axios = require('axios');
-const { Types } = require('../db.js')
-const URL="https://pokeapi.co/api/v2"
+const axios = require("axios");
+const URL = "https://pokeapi.co/api/v2";
+const { Types } = require("../db");
 
-const getAllTypes = async () => {
-    const types = await Types.findAll();
-    if (types.length === 0) {
-      const response = await axios.get(`${URL}/type`);
-      const typeNames = response.data.results.map((e) => e.name);
-  
-      await Types.bulkCreate(typeNames.map((name) => ({ name })));
+const allTypes = async () => {
+    const response = (await axios.get(`${URL}/type`)).data.results;
+    return response;
+};
 
-      const dbtypes =  await Types.findAll()
-  
-      return  dbtypes;
+const saveTypesInDB = async (types) => {
+    for (let i = 0; i < types.length; i++) {
+        const type = types[i];
+        await Types.findOrCreate({ where: { name: type.name } });
     }
-  
-    return types
-    }
-  
-module.exports = {getAllTypes}
+};
+
+module.exports =  {allTypes,saveTypesInDB} ;

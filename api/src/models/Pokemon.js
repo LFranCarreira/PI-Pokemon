@@ -42,9 +42,6 @@ module.exports = (sequelize) => {
     weight:{
       type:DataTypes.INTEGER,
       allowNull:true
-    },
-    types:{
-      type:DataTypes.ARRAY(DataTypes.STRING)
     }
   }, {timestamps: false} );
 };

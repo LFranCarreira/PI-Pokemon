@@ -1,6 +1,6 @@
 const axios = require("axios");
 const URL = "https://pokeapi.co/api/v2/pokemon";
-const {Pokemons,Type}=require("../db")
+const {Pokemons,Types}=require("../db")
 
 const getPokemonsFromApi=async ()=>{
 
@@ -17,14 +17,14 @@ const getPokemonsFromApi=async ()=>{
         speed: pkData.data.stats[5].base_stat,
         height: pkData.data.height,
         weight: pkData.data.weight,
-        types: pkData.data.types.map((type) => type.types.name),}
+        types: pkData.data.types.map((type) => type.type.name),}
     })
     return Promise.all(apiInfo)
 }
 const getPokemonsFromDB=async ()=>{
   return await Pokemons.findAll({
     include:{
-      model: Type,
+      model: Types,
       attributes:["name"],
       through:{
         attributes: [],
@@ -32,4 +32,5 @@ const getPokemonsFromDB=async ()=>{
     }
   })
 }
+
 module.exports={getPokemonsFromApi,getPokemonsFromDB}

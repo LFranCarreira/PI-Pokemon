@@ -1,15 +1,18 @@
+const { Op } = require("sequelize");
 const {Pokemons,Type}=require("../db")
 
-const newPokemon = async function (id,name,image,health,attack,defense,speed,height,weight,typeOne, typeTwo){
-  const newPokemon = await Pokemons.create({id,name,image,health,attack,defense,speed,height,weight});
-  const types = [ typeOne, typeTwo === null || typeTwo === undefined ? '' : typeTwo ]
-  for (const type of types) {
-    const eachType = await Type.findOne({
-        where: {name: type}
-    })
-await newPokemon.addType(eachType)
-}
-return newPokemon
+const newPokemon = async (pokemonData)=>{
+  const { name, image, health, attack, defense, speed, height, weight, types } = pokemonData
+  const typesFound=await Type.findAll({
+    where:{
+      name:{
+        [Op.in]:types
+      }
+    }
+  })
+  const newPk = await Pokemons.create({name,image,health,attack,defense,speed,height,weight,types});
+
+return await newPk.addTypes(typesFound)
 };
 
-module.exports = newPokemon;
+module.exports = {newPokemon};

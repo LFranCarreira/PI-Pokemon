@@ -4,7 +4,7 @@ const newPokemonFromApi = (array) =>
     id: pk.id,
     name: pk.name,
     image: pk.sprites.other.dream_world.front_default,
-    hp: pk.stats[0].base_stat,
+    health: pk.stats[0].base_stat,
     attack: pk.stats[1].base_stat,
     defense: pk.stats[2].base_stat,
     speed: pk.stats[5].base_stat,
@@ -16,4 +16,4 @@ const newPokemonFromApi = (array) =>
 })
 
 
-module.exports = newPokemonFromApi;
+module.exports = {newPokemonFromApi};

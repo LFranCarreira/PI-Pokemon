@@ -1,28 +1,40 @@
 const axios = require("axios");
 const URL = "https://pokeapi.co/api/v2/pokemon";
-const STATUS_OK=200
-const STATUS_ERROR=404
 const {Pokemons,Type}=require("./../db")
 
 
-const getPokemonById = async function(req, res) {
-    const { idPokemon } = req.params;
-    
-    try {
-      const pk = await axios.get(`${URL}/${idPokemon}`);
-      const { id, name, sprites, stats, height, weight } = pk.data;
-      const image = sprites.other.dream_world.front_default;
-      const health = stats[0].base_stat
-      const attack = stats[1].base_stat
-      const defense = stats[2].base_stat
-      const speed = stats[5].base_stat
-  
-      const pokemon = {id,name,image,health,attack,defense,speed,height,weight};
-  
-      res.status(STATUS_OK).json(pokemon);
-    
-    } catch (error) {
-      res.status(STATUS_ERROR).json({ message:error.message });
-    }
+const getPokemonById = async (id) =>{
+  if (isNaN(+id)) {
+    const pokemonFromDatabase = await Pokemons.findOne({
+      where: { id }, include: {
+        model: Type,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    })
+
+    if (pokemonFromDatabase) return pokemonFromDatabase;
+    throw new Error("Pokemon not found");
+
+  }
+
+  const pokemonData = (await axios.get(`${URL}/${id}`)).data;
+  if (pokemonData) {
+    const pokemonObject = {
+      id: pokemonData.id,
+      name: pokemonData.name,
+      image: pokemonData.sprites.other.dream_world.front_default,
+      health: pokemonData.stats[0].base_stat,
+      attack: pokemonData.stats[1].base_stat,
+      defense: pokemonData.stats[2].base_stat,
+      speed: pokemonData.stats[5].base_stat,
+      height: pokemonData.height,
+      weight: pokemonData.weight,
+      types: pokemonData.types.map((type) => type.type.name),
+    };
+    return pokemonObject;
   };
+}
 module.exports={getPokemonById}

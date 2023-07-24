@@ -32,5 +32,31 @@ const getPokemonsFromDB=async ()=>{
     }
   })
 }
+  const getPokemonByNames = async (name) => {
+    const resultado = await Pokemons.findAll({
+      where: { name: name },
+      include: [
+        {
+          model: Types,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+    if (resultado.length > 0) return getPokemonsFromDB(resultado);
+    else {
+      const url = "https://pokeapi.co/api/v2/pokemon/" + name;
+      return await fetch(url)
+        .then((response) => response.json())
+        .then((pokemon) => {
+          return filtrarPokemonApi(pokemon);
+        })
+        .catch((error) => {
+          throw Error(`No se encontro el pokemon con Nombre ${name}`);
+        });
+    }
+  };
 
-module.exports={getPokemonsFromApi,getPokemonsFromDB}
+module.exports={getPokemonsFromApi,getPokemonsFromDB,getPokemonByNames}

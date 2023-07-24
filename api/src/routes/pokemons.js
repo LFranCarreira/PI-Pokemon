@@ -7,7 +7,6 @@ const { getAllPokemons } = require("../handlers/getPokemons");
 
 router.get("/pokemons",getAllPokemons)
 router.get("/pokemons/:idPokemon",getPokemonById)
-router.get('/pokemons/name?="..."',getPokemonByName)
 router.post("/pokemons",postPokemon)
 
 module.exports = router;

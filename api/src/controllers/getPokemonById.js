@@ -35,4 +35,20 @@ const getPokemonByIdDB=async (idPokemon)=>{
     return null
   }
 }
-module.exports={getPokemonByIdApi,getPokemonByIdDB}
+const getPokemonFromDBName=async(idPokemon)=>{
+  try{  
+    const pokemon = await Pokemons.findOne({
+    where: { name: idPokemon },
+    include: {
+      model: Types,
+      attributes: ["name"],
+      through: { attributes: [] }
+    }
+  });
+  return pokemon;
+  }catch(error){
+    return null
+  }
+}
+
+module.exports={getPokemonByIdApi,getPokemonByIdDB,getPokemonFromDBName}

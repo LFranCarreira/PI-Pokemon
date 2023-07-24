@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 const { getPokemonById }=require("../handlers/getPokemonId")
-const { getPokemonByName } = require("../handlers/getPokemonByName");
 const { postPokemon } = require("../handlers/postPokemon");
 const { getAllPokemons } = require("../handlers/getPokemons");
 

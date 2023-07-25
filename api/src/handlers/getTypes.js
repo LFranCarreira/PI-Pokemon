@@ -1,15 +1,13 @@
-const { saveTypesInDB,allTypes } = require("../controllers/allTypes");
-const {Types}=require("../db")
+const { getTypes } = require("../controllers/allTypes");
+const {Type}=require("../db")
 const STATUS_ERROR=404;
 const STATUS_OK=200
-const getTypes = async (req, res) => {
+const getAllTypes = async (req, res) => {
     try {
-        const types = await allTypes()
-        await saveTypesInDB(types)
-        const everyType = await Types.findAll()
-        return res.status(STATUS_OK).send(everyType);
+        const types = await getTypes()
+        return res.status(STATUS_OK).send(types);
     } catch (error) {
-        res.status(STATUS_ERROR).json({ "error": error.message });
+        res.status(STATUS_ERROR).json({ error: error.message });
     }
 };
-module.exports =  {getTypes} ;
+module.exports =  {getAllTypes} ;

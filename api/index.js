@@ -1,28 +1,31 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
+const { Type } = require("./src/db.js")
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log(`Server raised in port: http://localhost:3001`); // eslint-disable-line no-console
+const preLoadTypes = async () => {
+  const types = await fetch("https://pokeapi.co/api/v2/type")
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      throw Error(error.message);
+    });
+  types.results.forEach((type) => {
+    Type.findOrCreate({
+      where: { Name: type.name},
+    });
   });
-});
+};
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(3001, async() => {
+      try {
+        await preLoadTypes();
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(`Server raised in port: http://localhost:3001`);
+      
+    });
+  })
+  .catch((error) => console.log(error.message));

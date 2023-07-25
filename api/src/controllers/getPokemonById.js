@@ -1,54 +1,36 @@
 const axios = require("axios");
 const URL = "https://pokeapi.co/api/v2/pokemon";
-const {Pokemons,Types}=require("./../db")
+const {Pokemons,Type}=require("./../db");
+const { filterPokemonApi, filterPokemonDB } = require("./getAllPokemons");
 
 
-const getPokemonByIdApi = async (idPokemon) => {
-  try{  
-    const pk = await axios.get(`${URL}/${idPokemon}`);
-    const { id, name, sprites, stats, height, weight } = pk.data;
-    const image = sprites.other.dream_world.front_default;
-    const health = stats[0].base_stat
-    const attack = stats[1].base_stat
-    const defense = stats[2].base_stat
-    const speed = stats[5].base_stat
-    const types= pk.data.types.map((type) => type.type.name)
-    const pokemon = {id,name,image,health,attack,defense,speed,height,weight,types};
-    return pokemon
-  }catch(error){
-    return null
-  }
-}
+const getPokemonById = async (id) => {
+  const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
 
-const getPokemonByIdDB=async (idPokemon)=>{
-  try{  
-    const pokemon = await Pokemons.findOne({
-    where: { id: idPokemon },
-    include: {
-      model: Types,
-      attributes: ["name"],
-      through: { attributes: [] }
+  if (typeof id === "string" && uuidRegex.test(id)) {
+    const result = await Pokemons.findOne({
+      where: { ID: id },
+      include: [
+        {
+          model: Type,
+          attributes: ["Name"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+    if (result === null)
+      throw new Error(`Pokemon with ID ${id} not found`);
+    return filterPokemonDB(result.dataValues);
+  } else {
+    try {
+      const response = await axios.get(`${URL}/${id}`);
+      const pokemon = response.data;
+      return filterPokemonApi(pokemon, "Detail");
+    } catch (error) {
+      throw new Error(`Pokemon with ID ${id} not found`);
     }
-  });
-  return pokemon;
-  }catch(error){
-    return null
   }
-}
-const getPokemonFromDBName=async(idPokemon)=>{
-  try{  
-    const pokemon = await Pokemons.findOne({
-    where: { name: idPokemon },
-    include: {
-      model: Types,
-      attributes: ["name"],
-      through: { attributes: [] }
-    }
-  });
-  return pokemon;
-  }catch(error){
-    return null
-  }
-}
-
-module.exports={getPokemonByIdApi,getPokemonByIdDB,getPokemonFromDBName}
+};
+module.exports={getPokemonById}

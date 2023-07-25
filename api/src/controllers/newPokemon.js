@@ -1,27 +1,27 @@
-const {Pokemons,Types}=require("../db");
+const {Pokemons,Type}=require("../db");
 
 const newPokemon = async (pokemonData)=>{
-  const { name, image, health, attack, defense, speed, height, weight, types } = pokemonData
-  const existingTypes = await Types.findAll({
+  const { Name, Image, Health, Attack, Defense, Speed, Height, Weight, Types } = pokemonData
+  const existingTypes = await Type.findAll({
     where: {
-      name: types,
+      Name: Types,
     },
   });
 
   // Verificar si todos los tipos proporcionados existen en la tabla 'Types'
-  if (existingTypes.length !== types.length) {
-    const nonExistentTypes = types.filter((type) => !existingTypes.some((existingType) => existingType.name === type));
+  if (existingTypes.length !== Types.length) {
+    const nonExistentTypes = Types.filter((type) => !existingTypes.some((existingType) => existingType.Name === type));
     throw new Error(`The following types do not exist: ${nonExistentTypes.join(", ")}`);
   }
   const newPokemon = await Pokemons.create({
-    name,
-    image,
-    health,
-    attack,
-    defense,
-    speed,
-    height,
-    weight,
+    Name,
+    Image,
+    Health,
+    Attack,
+    Defense,
+    Speed,
+    Height,
+    Weight,
   });
 
     for (const type of existingTypes) {

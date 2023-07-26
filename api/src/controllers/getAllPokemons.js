@@ -1,14 +1,12 @@
 const axios = require("axios");
 const URL = "https://pokeapi.co/api/v2/pokemon";
 const {Pokemons,Type}=require("../db")
-const filterPokemonApi = (pokemon, route = "Home") => {
+const filterPokemonApi = (pokemon) => {
   const types = [];
   pokemon["types"].forEach((element) => {
     types.push(element["type"]["name"]);
   });
-  let filteredPokemon = {};
-  if (route) {
-    filteredPokemon = {
+  return {
       ID: pokemon["id"],
       Name: pokemon["name"],
       Health: pokemon["stats"][0]["base_stat"],
@@ -20,20 +18,6 @@ const filterPokemonApi = (pokemon, route = "Home") => {
       Weight: pokemon["weight"],
       Types: types,
     };
-  } else {
-    filteredPokemon = {
-      ID: pokemon["id"],
-      Name: pokemon["name"],
-      Health: pokemon["stats"][0]["base_stat"],
-      Attack: pokemon["stats"][1]["base_stat"],
-      Defense: pokemon["stats"][2]["base_stat"],
-      Speed: pokemon["stats"][5]["base_stat"],
-      Image: pokemon["sprites"]["other"]["dream_world"]["front_default"],
-      Types: types,
-    };
-  }
-
-  return filteredPokemon;
 };
 
 const filterApiArray = (pokemonArray) => {

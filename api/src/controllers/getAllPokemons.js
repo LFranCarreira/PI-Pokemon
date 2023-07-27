@@ -47,11 +47,11 @@ const fetchPokemonsApi = async () => {
 };
 const filterPokemonDB = (pokemon) => {
   const types = [];
-  pokemon.Types.forEach((element) => types.push(element["Name"]));
-  pokemon["Type"] = types;
-  delete pokemon.types;
+  pokemon.Types.forEach((element) => types.push(element.Name));
+  pokemon.Types = types; // Cambiamos 'Type' por 'Types'
   return pokemon;
 };
+
 const fetchPokemonsDB = async () => {
   const PokemonsBD = await Pokemons.findAll({
     include: [
@@ -65,11 +65,12 @@ const fetchPokemonsDB = async () => {
     ],
   });
   const correctedPokemonsBD = PokemonsBD.map((item) => item.dataValues);
-  correctedPokemonsBD.forEach((pokemon) => {
-    filterPokemonDB(pokemon);
-  });
-  return correctedPokemonsBD;
+  const formattedPokemons = correctedPokemonsBD.map((pokemon) =>
+    filterPokemonDB(pokemon)
+  );
+  return formattedPokemons;
 };
+
 
 
 

@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 0, 0.9); /* Amarillo semi-transparente */
+  }
+  
+  .button {
+    font-size: 200%;
+    border: 0;
+    color: black;
+    background-color: rgb(216, 197, 112); /* Amarillo */
+    padding: 0.2% 1.2% 0.2% 1.2%;
+    border-radius: 1.5vw;
+  }
+  
+.span {
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.817);
+    background-color: rgba(0, 0, 0, 0.817);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 200%;
+    margin: 0 10px;
+}
+  
+.button:hover {
+    font-weight: 600;
+    cursor: pointer;
+}

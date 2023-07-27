@@ -1,0 +1,24 @@
+.allPokemons {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap:2vw;
+    row-gap: 5vh;
+    justify-content: center;
+}.pokemon {
+    width: fit-content;
+    height: fit-content;
+}
+@media (min-width: 300px){
+    .pokemon{
+       padding-left: 10%;
+       padding-right: 10%;
+    }
+  }
+  @media (min-width: 700px){
+    .pokemon {
+        padding-left: 0%;
+       padding-right: 0%;
+    }
+  }

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Landing from './components/LandingPage/Landing.jsx'
 import Home from './components/HomePage/Home';
 import Error404 from './components/Error404/Error404';
+import { useDispatch } from 'react-redux';
+import { getPokemons } from './redux/actions/actions';
 
 function App() {
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getPokemons(dispatch))
+  },[])
   return (
     <BrowserRouter>
     <div className="App">

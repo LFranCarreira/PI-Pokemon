@@ -1,0 +1,126 @@
+.container{
+  width: 430px;
+  height: fit-content;  
+  border-radius: 10px;
+}
+.container:hover {
+  transform: scale(1.05); /* Escala la card en un 5% al pasar el mouse por encima */
+}
+
+.id{
+  position: relative;
+  background-color: white;
+  width: fit-content;
+  left: 5%;
+  font-size: 100%;
+  padding: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 50vw;
+}
+.health {
+  font-size: 120%;
+  font-weight: 600;
+  align-items: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+  .spanHealth {
+    background-color: rgb(189, 189, 189);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    right: 5%;
+    align-items: center;
+    width: fit-content;
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 50vw;
+  }
+  
+   .name {
+    font-size: 300%;
+    font-weight: bold;
+  
+  }
+  
+  .divTypes {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: space-around;
+    display: flex;
+  }
+  
+  .divType {
+    display: flex;
+  }
+  
+  .divAttack,
+  .divDefense,
+  .divSpeed {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4%;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .attack,
+  .defense,
+  .speed {
+    font-size: 220%;
+    font-weight: 500;
+    color: black;
+  }
+  
+  .health {
+    font-size: 120%;
+    font-weight: 600;
+    align-items: flex-end;
+  }
+  
+  .image:hover {
+    transition-duration: 1s;
+    transform: scale(1.2, 1.2);
+  }
+  
+  .divImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px; 
+    height: 250px; 
+    margin-top: 2em; 
+    position: relative; 
+  }
+  
+  .image {
+    width: 250px;
+    height: 250px; 
+  }
+  
+  
+  .test {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .spanStat,
+  .stats {
+    font-size: 100%;
+    color: rgb(19, 11, 11);
+    display: flex;
+  }
+  
+  .title {
+    padding-top: 3%;
+    display: flex;
+    justify-content: space-between;
+  }

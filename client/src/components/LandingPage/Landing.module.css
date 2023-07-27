@@ -14,8 +14,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 350px;
+  width: 450px;
+  height: 400px;
 }
 .buttonIng{
   width: 20vw;
@@ -35,6 +35,6 @@
 }
 .author{
   font-family:Arial, Helvetica, sans-serif;
-  margin-top:490px;
+  margin-top:440px;
   color: #245bf1;
 }

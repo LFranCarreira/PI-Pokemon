@@ -13,7 +13,7 @@ const filterPokemonApi = (pokemon) => {
       Attack: pokemon["stats"][1]["base_stat"],
       Defense: pokemon["stats"][2]["base_stat"],
       Speed: pokemon["stats"][5]["base_stat"],
-      Image: pokemon["sprites"]["other"]["dream_world"]["front_default"],
+      Image: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
       Height: pokemon["height"],
       Weight: pokemon["weight"],
       Types: types,

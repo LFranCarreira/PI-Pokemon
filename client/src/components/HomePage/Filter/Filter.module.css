@@ -1,31 +1,44 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    margin-top: 1%;
-    max-width: 100%;
-    padding-left: 0%;
-    padding-right: 0%;
-   
-  }
-  @media (max-width: 600px) {
-    .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  margin-top: 1%;
+  max-width: 100%;
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+@media (max-width: 600px) {
+  .container {
     width: fit-content;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    }
   }
-  
-  .selectShow,
-  .selectOrderBy,
-  .selectOrder {
-    color: #000;
-    background-color: white;
-    font-weight: 600;
-    padding: 0.1% 0.1% 0.1% 0.1%;
-    font-size: 100%;
-    border: solid 2px rgb(192, 198, 255);
-    border-radius: 0.5vw;
-    text-align: center;
-  }
+}
+
+/* Styling for the select elements */
+.selectShow,
+.selectSortBy,
+.selectOrder {
+  color: #000000;
+  background-color: rgb(255, 255, 255);
+  font-weight: 600;
+  padding: 5px 10px; /* Ajustar el tamaño del padding para mayor suavidad */
+  font-size: 16px; /* Ajustar el tamaño de la fuente para mayor suavidad */
+  border: 3px solid rgb(97, 109, 219);
+  border-radius: 5px; /* Ajustar el radio para bordes más suaves */
+  text-align: center;
+  outline: none; /* Eliminar el resaltado del foco en el elemento */
+  transition: background-color 0.3s ease; /* Transición suave en el cambio de color de fondo */
+  cursor: pointer;
+}
+
+/* Añadir un estilo cuando el usuario coloca el cursor sobre el elemento */
+
+/* Estilo para cuando el usuario enfoca el elemento */
+.selectShow:focus,
+.selectSortBy:focus,
+.selectOrder:focus {
+  background-color: #d39b23;
+}

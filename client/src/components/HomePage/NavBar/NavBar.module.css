@@ -1,111 +1,108 @@
-.divLogo {
-    grid-area: 1 / 1 / 2 / 2;
-    display: flex;
-    width: 20%
-  }
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  padding: 0.5% 2% 0.5% 2%;
+  border-radius: 0px 0 2vw 2vw;
+  background-color: rgb(136, 112, 61);
+  align-items: center;
+}
+.buttonCreate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+  background-color: #ffc107;
+  border: 3px solid #000000; /* Añadimos un borde al botón */
+  border-radius: 16px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.buttonCreate:hover {
+  background-color: #ffa000;
+}
+.divSpan {
+  text-decoration: none;
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  height: 60%;
+  justify-content: center;
+}
 
-  .searchBar {
-    grid-area: 1 / 3 / 2 / 4;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0.5%;
-    border-radius: 1.5vw;
-    background-color: white;
-    height: 40%;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    min-width: fit-content;
-    overflow: hidden;
-  }
-  .input {
-    border: 0;
-    font-size: 100%;
-    width: 50%;
-    display: flex;
+/* Search Bar styles */
+.searchBar {
+  grid-area: 1 / 3 / 2 / 4;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.7%;
+  border-radius: 1vw;
+  background-color: white;
+  height: 50%;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  min-width: fit-content;
+  overflow: hidden;
+}
+
+.input {
+  border: 0;
+  font-size: 100%;
+  width: 60%;
+  display: flex;
+}
+.button {
+  display: flex;
+  background-color: white;
+  border: 0;
+  width: fit-content;
+  font-size: 120%;
+  border-radius: 22px;
+  padding: 16px;
+}
+.button:hover{
+  cursor: pointer;
+}
+.input:focus {
+  outline: none;
+}
+
+/* Media queries */
+@media (min-width: 300px) {
+  .spanCreate {
+    font-size: 80%;
   }
   .button {
-    display: flex;
-    background-color: white;
-    border: 0;
-    width: fit-content;
-    font-size: 120%;
-  }
-  .container {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    padding: 0.5% 2% 0.5% 2%;
-    border-radius: 0px 0 2vw 2vw;
-    background-color: rgb(192, 198, 255);
-    align-items: center;
-  }
-  .input:focus {
-    outline: none;
-  }
-  .divSpan {
-    text-decoration: none;
-    grid-area: 1 / 2 / 2 / 3;
-    display: flex;
-    height: 60%;
-    justify-content: center;
-  }
-  .button:hover {
-    transition-duration: 1s;
-    transform: scale(1.2, 1.2);
-  }
-  .buttonCreate { 
-    min-height: fit-content;
-    height: 80%;
-    border: 2px solid #ffffff;
-    background-color: #ffffff;
-    border-radius: 10vw;
-    padding: 0 1.2vw 0  1vw;
-    transition: all ease-in-out 0.2s;
-    display: flex;
-    align-self: center;
+    font-size: 60%;
     align-content: center;
-    align-items: center;
+    width: fit-content;
   }
+  .input {
+    font-size: 80%;
+    display: flex;
+    align-content: center;
+  }
+}
+
+@media (min-width: 700px) {
   .spanCreate {
-    color: black;
     font-size: 160%;
-    font-weight: 600;
+    display: flex;
+    align-content: center;
   }
-  .buttonCreate:hover {
-    background-color: #ededed;
+  .input {
+    display: flex;
+    align-content: center;
+    font-size: 100%;
   }
-  
-  @media (min-width: 300px) {
-    .spanCreate{
-      font-size: 80%;
-    }
-    .button{
-      font-size: 60%;
-      align-content: center;
-      width: fit-content;
-    }
-    .input{
-      font-size: 80%;
-      display: flex;
-      align-content: center;
-    }
+  .button {
+    font-size: 100%;
+    align-content: center;
   }
-  @media (min-width: 700px) {
-    .spanCreate{
-      font-size: 160%;
-      display: flex;
-      align-content: center;
-      
-    }
-    .input{
-      display: flex;
-      align-content: center;
-      font-size: 100%;
-    }
-    .button{
-      font-size: 100%;
-      align-content: center;
-    }
-  }
+}

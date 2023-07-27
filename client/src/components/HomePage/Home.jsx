@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Filter from "./Filter/Filter";
 import Loading from "./../Loading/Loading"
+import NavBar from "./NavBar/NavBar"
 export default function Home() {
   const pokemons = useSelector((state) => state.pokemons);
   const [pk, setPk] = useState([...pokemons]);
@@ -17,7 +18,8 @@ export default function Home() {
 
   if (pokemons.length === 0) return <Loading />;
   return (
-    <div className={styles.bg}>
+    <div>
+      <NavBar/>
       <Filter
         pokemons={pokemons}
         setOrderedPokemons={updateOrderedPokemons}

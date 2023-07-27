@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Error404.module.css';
 import { Link } from 'react-router-dom';
-import sadPokemon from '../../Img/sadPokemon.png'
+import sadPokemon from '../../Img/sadPokemon.gif'
 export default function Error404(){
   return (
     <div className={styles.errorContainer}>

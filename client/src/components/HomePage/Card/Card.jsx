@@ -62,7 +62,7 @@ export default function Card(props) {
       </div>
       <div className={styles.test}>
         <div className={styles.divImage}>
-          <Link to={"/Detail/" + ID}>
+          <Link to={"/detail/" + ID}>
           <img
               className={styles.image}
               src={Image ? Image : pokeballVacia}

@@ -15,7 +15,7 @@ const newPokemon = async (pokemonData)=>{
   // Verificar si todos los tipos proporcionados existen en la tabla 'Types'
   if (existingTypes.length !== Types.length) {
     const nonExistentTypes = Types.filter((type) => !existingTypes.some((existingType) => existingType.Name === type));
-    throw new Error(`The following types do not exist: ${nonExistentTypes.join(", ")}`);
+    throw new Error(`You can not repeat the same type`);
   }
 
   const url = "https://pokeapi.co/api/v2/pokemon/" + Name;

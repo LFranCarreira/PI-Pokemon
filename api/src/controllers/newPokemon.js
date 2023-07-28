@@ -7,12 +7,27 @@ const newPokemon = async (pokemonData)=>{
       Name: Types,
     },
   });
-
+  let resultados = await Pokemons.findAll({
+    where: {
+      Name: Name,
+    },
+  });
   // Verificar si todos los tipos proporcionados existen en la tabla 'Types'
   if (existingTypes.length !== Types.length) {
     const nonExistentTypes = Types.filter((type) => !existingTypes.some((existingType) => existingType.Name === type));
     throw new Error(`The following types do not exist: ${nonExistentTypes.join(", ")}`);
   }
+
+  const url = "https://pokeapi.co/api/v2/pokemon/" + Name;
+  await fetch(url)
+    .then((response) => response.json())
+    .then((pokemon) => {
+      resultados = pokemon
+    })
+      .catch((error) => {
+       resultados = error
+      });
+  if (resultados["id"]) throw new Error("Ya existe un pokemon con ese nombre");
   const newPokemon = await Pokemons.create({
     Name,
     Image,

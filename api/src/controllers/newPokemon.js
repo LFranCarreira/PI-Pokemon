@@ -27,7 +27,7 @@ const newPokemon = async (pokemonData)=>{
       .catch((error) => {
        resultados = error
       });
-  if (resultados["id"]) throw new Error("Ya existe un pokemon con ese nombre");
+  if (resultados["id"]) throw new Error("That name belongs to another Pokemon");
   const newPokemon = await Pokemons.create({
     Name,
     Image,

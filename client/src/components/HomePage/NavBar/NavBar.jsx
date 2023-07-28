@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory} from "react-router-dom";
 import styles from "./NavBar.module.css";
+import homePokemon from "../../../Img/homePokemon.png"
+import { Link } from "react-router-dom";
 export default function NavBar() {
   const [search, setSearch] = useState("");
 
@@ -35,7 +37,9 @@ export default function NavBar() {
 
   return (
     <div className={styles.container}>
-
+          <Link to="/home">
+            <img className={styles.img} src={homePokemon} alt="Home" />
+          </Link>
       <div className={styles.divSpan}>
         <button className={styles.buttonCreate} onClick={createPokemon}>
           <span>Create your pokemon</span>

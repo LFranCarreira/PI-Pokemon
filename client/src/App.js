@@ -6,6 +6,7 @@ import Home from './components/HomePage/Home';
 import Error404 from './components/Error404/Error404';
 import Loading from './components/Loading/Loading';
 import CreatePokemon from './components/CreatePokemon/CreatePokemon';
+import Detail from './components/Detail/Detail';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/detail/:id" component={Landing} />
+          <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/createPokemon" component={CreatePokemon} />
           <Route exact path="/loading" component={Loading}/>
           <Route path="*" component={Error404} />

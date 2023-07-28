@@ -4,7 +4,7 @@ import styles from "./Filter.module.css";
 export default function Filter(props) {
   const { pokemons, setOrderedPokemons } = props;
   const [Order, setOrder] = useState("Ascending");
-  const [OrderBy, setOrderBy] = useState("Name");
+  const [OrderBy, setOrderBy] = useState("ID");
   const [Show, setShow] = useState("Show all");
 
   useEffect(() => {
@@ -71,6 +71,7 @@ export default function Filter(props) {
         <option disabled value="">
           Sort by
         </option>
+        <option value="ID">ID</option>
         <option value="Types">Types</option>
         <option value="Name">Name</option>
         <option value="Attack">Attack</option>

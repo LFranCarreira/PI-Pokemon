@@ -6,6 +6,20 @@ const filterPokemonApi = (pokemon) => {
   pokemon["types"].forEach((element) => {
     types.push(element["type"]["name"]);
   });
+  if(pokemon["id"]>=650){
+    return {
+      ID: pokemon["id"],
+      Name: pokemon["name"],
+      Health: pokemon["stats"][0]["base_stat"],
+      Attack: pokemon["stats"][1]["base_stat"],
+      Defense: pokemon["stats"][2]["base_stat"],
+      Speed: pokemon["stats"][5]["base_stat"],
+      Image: pokemon["sprites"]["front_default"],
+      Height: pokemon["height"],
+      Weight: pokemon["weight"],
+      Types: types,
+    };
+  }
   return {
       ID: pokemon["id"],
       Name: pokemon["name"],

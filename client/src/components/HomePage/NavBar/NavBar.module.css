@@ -73,7 +73,10 @@
 .input:focus {
   outline: none;
 }
-
+.img{
+  width: 100px;
+  height: 90px;
+}
 /* Media queries */
 @media (min-width: 300px) {
   .spanCreate {

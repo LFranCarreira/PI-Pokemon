@@ -2,8 +2,8 @@ const validateStats=(inputs)=>{
     const errors = {};
 
     // Validation for Attack (mandatory)
-    if (!inputs.hasOwnProperty('Attack') || inputs.Attack < 5 || inputs.Attack > 1000) {
-      errors.Attack = 'Attack value must be between 5 and 1000.';
+    if (!inputs.hasOwnProperty('Attack') || inputs.Attack < 10 || inputs.Attack > 500) {
+      errors.Attack = 'Attack value must be between 10 and 500.';
     }
     // Validation for Image (mandatory)
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
@@ -12,12 +12,12 @@ const validateStats=(inputs)=>{
     }
   
     // Validation for Defense (mandatory)
-    if (!inputs.hasOwnProperty('Defense') || inputs.Defense < 5 || inputs.Defense > 1000) {
-      errors.Defense = 'Defense value must be between 5 and 1000.';
+    if (!inputs.hasOwnProperty('Defense') || inputs.Defense < 10 || inputs.Defense > 500) {
+      errors.Defense = 'Defense value must be between 10 and 1000.';
     }
     // Validation for Health (mandatory)
-    if (!inputs.hasOwnProperty('Health') || inputs.Health < 5 || inputs.Health > 1000) {
-        errors.Health = 'Health value must be between 5 and 1000.';
+    if (!inputs.hasOwnProperty('Health') || inputs.Health < 10 || inputs.Health > 500) {
+        errors.Health = 'Health value must be between 10 and 1000.';
     }
   
     // Validation for Name field (mandatory)
@@ -36,25 +36,25 @@ const validateStats=(inputs)=>{
       // Validation for Speed (if exists)
     if (
         inputs.hasOwnProperty('Speed') &&
-        (inputs.Speed !== "" && (inputs.Speed < 5 || inputs.Speed > 1000))
+        (inputs.Speed !== "" && (inputs.Speed < 0 || inputs.Speed > 500))
       ) {
-        errors.Speed = 'Speed value must be between 5 and 1000.';
+        errors.Speed = 'Speed value must be between 1 and 500.';
       }
-    
+
       // Validation for Weight (if exists)
       if (
         inputs.hasOwnProperty('Weight') &&
-        (inputs.Weight !== "" && (inputs.Weight < 10 || inputs.Weight > 400))
+        (inputs.Weight !== "" && (inputs.Weight < 0 || inputs.Weight > 400))
       ) {
-        errors.Weight = 'Weight value must be between 10 and 400.';
+        errors.Weight = 'Weight value must be between 1 and 400.';
       }
     
       // Validation for Height (if exists)
       if (
         inputs.hasOwnProperty('Height') &&
-        (inputs.Height !== "" && (inputs.Height < 10 || inputs.Height > 400))
+        (inputs.Height !== "" && (inputs.Height < 0|| inputs.Height > 400))
       ) {
-        errors.Height = 'Height value must be between 10 and 400.';
+        errors.Height = 'Height value must be between 1 and 400.';
       }
     
     return errors;

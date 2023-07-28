@@ -18,7 +18,18 @@
   span {
     margin-right: 8px;
   }
+  .formContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
   
+  .options{
+    width: 300px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
   input[type="text"],
   select {
     width: 200px;

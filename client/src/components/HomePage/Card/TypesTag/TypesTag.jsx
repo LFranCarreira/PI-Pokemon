@@ -4,7 +4,7 @@ const Colors = {
     steel:"#3c434a",
     shadow:"#252525",
     dark:"#0b0c14",
-    dragon: "#ffeaa7",
+    dragon: "#4c2882",
     electric: "#fed330",
     fairy: "#FF0069",
     fighting: "#30336b",

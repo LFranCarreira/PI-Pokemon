@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { validateStats } from "./validation";
 import axios from "axios";
 import styles from "./CreatePokemon.module.css"
-import { Link } from "react-router-dom";
-import homePokemon from "../../Img/homePokemon.png"
+import NavBar from "../HomePage/NavBar/NavBar"
 export default function CreatePokemon() {
   const [newPokemon, setNewPokemon] = useState({
     Name: "",
     Image:"",
-    Health: "",
-    Attack: "",
-    Defense: "",
-    Speed: undefined,
-    Height: undefined,
-    Weight: undefined,
+    Health: 250,
+    Attack: 250,
+    Defense: 250,
+    Speed: 0,
+    Height: 0,
+    Weight: 0,
     Types: [""],
   });
   const typesList = ["normal","fighting","flying","poison","ground","rock","bug","ghost","steel",
@@ -43,14 +42,10 @@ export default function CreatePokemon() {
     });
   };
   const handlePokemonInfo = (event) => {
-    const propiedad = event.target.name;
+    const props = event.target.name;
     const value = event.target.value;
-
-    // Convertimos los valores de Speed, Height y Weight a enteros si son proporcionados
-    const intValue = ["Speed", "Height", "Weight"].includes(propiedad) ? parseInt(value, 10) : value;
-
     const aux = { ...newPokemon };
-    aux[propiedad] = intValue;
+    aux[props] = value;
     setNewPokemon(aux);
   };
   const handleBlur = (event) => {
@@ -96,14 +91,13 @@ export default function CreatePokemon() {
     }
   };  
   return (
+    <div>
+    <NavBar/>
     <div className={styles.bg}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-        <Link to="/home">
-          <img className={`${styles.img} ${styles.scaleButton}`}  src={homePokemon} alt="Home"/>
-        </Link>
-      <form className={styles.form} onSubmit={submitPokemon}>
-        <div className={styles.container}>
-          <div>
+      <div className={styles.formContainer}>
+        <form className={styles.form} onSubmit={submitPokemon}>
+          <div className={styles.container}>
+          <div className={styles.options}>
             <span>Name: </span>
             <input
               pattern="[a-z]+"
@@ -115,7 +109,7 @@ export default function CreatePokemon() {
               onChange={handlePokemonInfo}
              />
             </div>
-            <div>
+            <div className={styles.options}>
             <span>Image: </span>
             <input
                 type="text"
@@ -126,51 +120,54 @@ export default function CreatePokemon() {
                 onChange={handlePokemonInfo}
              />
             </div>
-            <div>
+            <div className={styles.options}>
             <span>Health: </span>
             <input
               type="range"
-              min="5"
-              max="1000"
+              min="10"
+              max="500"
               name="Health"
               placeholder="Health"
               onBlur={handleBlur}
               value={newPokemon.Health}
               onChange={handlePokemonInfo}
             />
+            <span>{newPokemon.Health}</span> {/* Display the current value */}
           </div>
-          <div>
+          <div className={styles.options}>
             <span>Attack: </span>
             <input
               type="range"
-              min="5"
-              max="1000"
+              min="10"
+              max="500"
               name="Attack"
               placeholder="Attack"
               onBlur={handleBlur}
               value={newPokemon.Attack}
               onChange={handlePokemonInfo}
             />
+            <span>{newPokemon.Attack}</span> {/* Display the current value */}
           </div>
-          <div>
+          <div className={styles.options}>
             <span>Defense: </span>
             <input
               type="range"
-              min="5"
-              max="1000"
+              min="10"
+              max="500"
               name="Defense"
               placeholder="Defense"
               onBlur={handleBlur}
               value={newPokemon.Defense}
               onChange={handlePokemonInfo}
             />
+            <span>{newPokemon.Defense}</span> {/* Display the current value */}
           </div>
-          <div>
-            <span>Speed: </span>
+          <div className={styles.options}>
+            <span>Speed (optional) : </span>
             <input
-              type="range"
-              min="5"
-              max="1000"
+              type="number"
+              min="0"
+              max="500"
               name="Speed"
               placeholder="Speed"
               onBlur={handleBlur}
@@ -178,11 +175,11 @@ export default function CreatePokemon() {
               onChange={handlePokemonInfo}
             />
           </div>
-          <div>
-            <span>Height: </span>
+          <div className={styles.options}>
+            <span>Height (optional) : </span>
             <input
-              type="range"
-              min="10"
+              type="number"
+              min="0"
               max="400"
               name="Height"
               placeholder="Height"
@@ -191,11 +188,11 @@ export default function CreatePokemon() {
               onChange={handlePokemonInfo}
             />
           </div>
-          <div>
-            <span>Weight: </span>
+          <div className={styles.options}>
+            <span>Weight (optional) : </span>
             <input
-              type="range"
-              min="10"
+              type="number"
+              min="0"
               max="400"
               name="Weight"
               placeholder="Weight"
@@ -205,7 +202,7 @@ export default function CreatePokemon() {
             />
           </div>
         </div>
-        <div>
+        <div className={styles.options}>
             <span>Type 1: </span>
             <select name="Type1" value={selectedType1} onChange={handleSelectType1}>
               <option value="">Select a type</option>
@@ -216,7 +213,7 @@ export default function CreatePokemon() {
               ))}
             </select>
           </div>
-          <div>
+          <div className={styles.options}>
             <span>Type 2: </span>
             <select name="Type2" value={selectedType2} onChange={handleSelectType2}>
               <option value="">Select a type</option>
@@ -229,6 +226,7 @@ export default function CreatePokemon() {
           </div>
         <button type="submit">Create Pokemon</button>
       </form>
+      </div>
     </div>
     </div>
   );

@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  @keyframes scaleButton {
+    0% {
+      transform: scale(2);
+    }
+    50% {
+      transform: scale(2.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  span {
+    margin-right: 8px;
+  }
+  
+  input[type="text"],
+  select {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos para los campos de selección de tipo */
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .select-container select {
+    width: 220px;
+    height: 30px;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para el contenedor principal */
+  .bg {
+    background-image: url("../../Img/researchLab.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos para el logo de "Home" */
+  .img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Estilos para el contenedor del formulario */
+  .form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }

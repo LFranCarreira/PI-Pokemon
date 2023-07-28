@@ -18,9 +18,13 @@
   padding-right: 2%;
   border-radius: 50vw;
 }
+.id:hover{
+  background-color:rgb(98, 107, 107);
+  cursor:default;
+}
 .health {
   font-size: 120%;
-  font-weight: 600;
+  font-weight: 600px;
   align-items: flex-end;
   position: absolute;
   top: 0;
@@ -28,7 +32,7 @@
 }
 
   .spanHealth {
-    background-color: rgb(189, 189, 189);
+    background-color: rgb(240, 230, 230);
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -40,18 +44,27 @@
     padding-right: 2%;
     border-radius: 50vw;
   }
+  .spanHealth:hover{
+  background-color:rgb(98, 107, 107);
+  cursor:default;
+  }
   
    .name {
     font-size: 300%;
     font-weight: bold;
   
   }
-  
+  .name:hover{
+    cursor:default;
+  }
   .divTypes {
     margin-top: 5%;
     margin-bottom: 5%;
     justify-content: space-around;
     display: flex;
+  }
+  .divType:hover{
+    cursor:default;
   }
   
   .divType {
@@ -59,8 +72,7 @@
   }
   
   .divAttack,
-  .divDefense,
-  .divSpeed {
+  .divDefense {
     display: flex;
     flex-direction: column;
     margin-bottom: 4%;
@@ -70,10 +82,12 @@
     display: flex;
     justify-content: space-around;
   }
+  .stats:hover{
+    cursor:default
+  }
   
   .attack,
-  .defense,
-  .speed {
+  .defense {
     font-size: 220%;
     font-weight: 500;
     color: black;

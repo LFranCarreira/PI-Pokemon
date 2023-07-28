@@ -1,11 +1,10 @@
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
   margin-top: 1%;
   max-width: 100%;
   padding-left: 0%;
   padding-right: 0%;
+  justify-content: space-around; /* Añadir esta línea para distribuir el espacio equidistantemente */
 }
 
 @media (max-width: 600px) {
@@ -32,6 +31,7 @@
   outline: none; /* Eliminar el resaltado del foco en el elemento */
   transition: background-color 0.3s ease; /* Transición suave en el cambio de color de fondo */
   cursor: pointer;
+  justify-content: space-between;
 }
 
 /* Añadir un estilo cuando el usuario coloca el cursor sobre el elemento */

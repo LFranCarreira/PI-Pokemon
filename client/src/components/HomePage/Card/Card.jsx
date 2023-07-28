@@ -6,7 +6,7 @@ import pokeballVacia from "../../../Img/pokeballvacia.png";
 
 export default function Card(props) {
   const { pokemon } = props;
-  const { Name, ID, Types, Attack, Image, Defense, Health, Speed } = pokemon;
+  const { Name, ID, Types, Attack, Image, Defense, Health } = pokemon;
   const Colors = {
     bug: "#26de81",
     steel:"#3c434a",
@@ -94,12 +94,6 @@ export default function Card(props) {
             {Defense ? Defense : "?"}
           </span>
           <span className={styles.spanStat}>Defense</span>
-        </div>
-        <div className={styles.divSpeed}>
-          <span title="Speed" className={styles.speed}>
-            {Speed ? Speed : "?"}
-          </span>
-          <span className={styles.spanStat}>Speed</span>
         </div>
       </div>
     </div>

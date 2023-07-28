@@ -62,13 +62,13 @@ export default function Filter(props) {
   return (
     <div className={styles.container}>
       <select className={styles.selectShow} value={Show} onChange={handleShowChange}>
-        <option>Show all</option>
-        <option>Show Existing Pokemons</option>
-        <option>Show Created Pokemons</option>
+        <option value="Show all">Show all</option>
+        <option value="Show Existing Pokemons">Show Existing Pokemons</option>
+        <option value="Show Created Pokemons">Show Created Pokemons</option>
       </select>
 
       <select className={styles.selectSortBy} value={OrderBy} onChange={handleSortByChange}>
-        <option disabled selected>
+        <option disabled value="">
           Sort by
         </option>
         <option value="Types">Types</option>
@@ -77,7 +77,7 @@ export default function Filter(props) {
       </select>
 
       <select className={styles.selectOrder} value={Order} onChange={handleOrderChange}>
-        <option disabled selected>
+        <option disabled value="">
           Order
         </option>
         <option value="Ascending">Ascending</option>

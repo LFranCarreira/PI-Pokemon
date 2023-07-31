@@ -16,6 +16,7 @@ export default function Loading() {
 
     // Limpiar el temporizador cuando el componente se desmonta o actualiza
     return () => clearTimeout(timeout);
+    //eslint-disable-next-line
   }, []);
 
   return (

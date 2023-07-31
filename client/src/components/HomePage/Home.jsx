@@ -12,6 +12,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPokemons(dispatch));
+    // eslint-disable-next-line
   }, []);
   useEffect(() => {
     if (pokemons) setPk(pokemons);

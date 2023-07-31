@@ -1,9 +1,9 @@
-const axios = require("axios");
-const React = require("react");
-const { useState } = require("react");
-const { useHistory, Link } = require("react-router-dom");
-const styles = require("./NavBar.module.css");
-const homePokemon = require("../../../Img/homePokemon.png");
+import axios from "axios";
+import { useState } from "react";
+import { useHistory} from "react-router-dom";
+import styles from "./NavBar.module.css";
+import homePokemon from "../../../Img/homePokemon.png"
+import { Link } from "react-router-dom";
 export default function NavBar() {
   const [search, setSearch] = useState("");
 

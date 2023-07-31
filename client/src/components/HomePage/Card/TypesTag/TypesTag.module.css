@@ -1,11 +1,12 @@
 .default {
-    background-color: rgb(25, 36, 133);
-    padding: .2vw .6vw .2vw .6vw;
-    font-weight: 600;
-    border-radius: .7vw;
-    font-size: 130%;
-    color: white;
-  }
+  background-color: rgb(25, 36, 133);
+  padding: .2vw .6vw .2vw .6vw;
+  font-weight: 600;
+  border-radius: .7vw;
+  font-size: 130%;
+  color: white;
+  border: 3px solid rgba(24, 19, 19, 0.541); /* Agregar el borde */
+}
   
   
   

@@ -1,71 +1,123 @@
 .container {
-    display: flex;
-    justify-content: center;
-    padding-top: 2vw;
-    padding-left: 2%;
-    padding-right: 2%;
-    }.carta{
-        border-radius: 10%;
-        padding: 2% 1% 2% 1%;
-    }
-    
-    .nombre {
-      display: flex;
-      justify-content: center;
-      font-size: 210%;
-      font-weight: 600;
-    }
-    .imagen {
-      width: 80%;
-    }
-    .divImagen {
-      justify-content: center;
-      display: flex;
-    }
-    .stats {
-      font-size:210%;
-      font-weight: 600;
-      display: flex;
-      justify-content: center;
-    }
-    .divStats {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      column-gap: 2%;
-    }
-    .caracteristicas {
-      font-size: 210%;
-      font-weight: 600;
-      display: flex;
-      justify-content: center;
-    }
-    .divCaracteristicas {
-      display: flex;
-      justify-content: center;
-      column-gap: 2%;
-    }
-    .divTipo {
-      padding-top: 2%;
-      display: flex;
-      justify-content: center;
-      column-gap: 2%;
-    }
-    .divEstadisticas {
-      display: flex;
-      flex-direction: column;
-    }
-    .stat,
-    .caracteristica {
-      font-size:150%;
-      font-weight: 600;
-    }
-    .spanStat,
-    .spanCaracteristica {
-      font-size: 100%;
-      color: rgb(170, 170, 170);
-    }
-    .divCaracteristica {
-      display: flex;
-      flex-direction: column;
-    }
+  display: flex;
+  justify-content: center;
+  padding-top: 2vw;
+  padding-left: 2%;
+  padding-right: 2%;
+  }
+.card{
+  width: 900px;
+  height: 600px;
+  border-radius: 10%;
+  padding: 2% 1% 2% 1%;
+}
+.name{
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  margin-left:8%;
+  font-size: 220%;
+  font-weight: 600;
+}  
+.image {
+  display: flex;
+  width: 400px;
+  height: 400px;
+}
+
+.divImage {
+  position: absolute;
+  justify-content: flex-start;
+  display: flex;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.stats {
+  position: absolute;
+  font-size:300%;
+  margin-bottom:70px ;
+  margin-left: 32%;
+  font-weight: 700;
+  display: flex;
+}
+.stat{
+  margin-left: 40px;
+  font-weight:500;
+  font-size: 35px;
+  
+}
+.statsImg{
+  margin: 2px;
+  width: 45px;
+  height: 40px;
+}
+.divStats {
+  display: inline;
+  font-size: 25px;
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 120px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  column-gap: 2%;
+}
+.specs {
+  position: absolute;
+  font-size:230%;
+  margin-top:18% ;
+  margin-left: 32%;
+  font-weight: 700;
+  display: flex;
+}
+.divCharacteristics{
+  position: absolute;
+  display: inline;
+  justify-content: flex-end;
+  margin-top: 400px;
+  margin-left: 8.3%;
+  column-gap: 2%;
+}
+.divType {
+  padding-top: 2%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60%;
+  column-gap: 2%;
+  margin-right: 14%;
+}
+.types{
+  position: absolute;
+  font-size:230%;
+  margin-top:26% ;
+  margin-left: 32%;
+  font-weight: 600;
+  display: flex;
+}
+.divStatistics {
+  display: flex;
+  margin-top:14%;
+  flex-direction: column;
+}
+.specsImg{
+  margin: 2px;
+  width: 45px;
+  height: 40px;
+}
+.specsImg2{
+  width: 60px;
+}
+.spanCharacteristic {
+  font-size: 150%;
+  color: rgb(0, 0, 0);
+}
+.divCharacteristic {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos al centro */
+}
+
+.characteristic {
+  font-size: 32px;
+  font-weight: 600;
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos al centro */
+}

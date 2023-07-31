@@ -10,12 +10,12 @@ export default function Card(props) {
   const Colors = {
     bug: "#26de81",
     steel:"#3c434a",
-    shadow:"#252525",
-    dark:"#0b0c14",
+    shadow:"#A20099",
+    dark:"#4B3621",
     dragon: "#4c2882",
     electric: "#fed330",
     fairy: "#FF0069",
-    fighting: "#30336b",
+    fighting: "#CC3333",
     fire: "#f0932b",
     flying: "#81ecec",
     grass: "#00b894",
@@ -25,7 +25,7 @@ export default function Card(props) {
     normal: "#95afc0",
     poison: "#6c5ce7",
     psychic: "#a29bfe",
-    rock: "#2d3436",
+    rock: "#838579",
     water: "#0190FF",
   };
   function isUUID(id) {
@@ -43,9 +43,9 @@ export default function Card(props) {
     <div
       className={styles.container}
       style={{
-        background: `radial-gradient(circle at 50% 00%, ${
+        background: `${
           Colors[Types[0]] ? Colors[Types[0]] : "rgb(192, 198, 255)"
-        } 50%, #bababa 50%)`,
+        }`,
       }}
       key={ID}
       

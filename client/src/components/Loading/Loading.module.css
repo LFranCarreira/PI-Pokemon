@@ -7,11 +7,11 @@
     /* Flexbox styles */
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content:end;
+    align-items: center;
   }
   
   .text {
-    font-size: 500%;
+    font-size: 300%;
     color: rgb(175, 70, 66);
   }

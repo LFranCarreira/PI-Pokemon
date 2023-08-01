@@ -41,9 +41,15 @@ export default function CreatePokemon() {
       return newTypes;
     });
   };
+
   const handlePokemonInfo = (event) => {
     const props = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
+  
+    // Convierte el valor del campo "Name" a minúsculas
+    if (props === "Name") {
+      value = value.toLowerCase();
+    }
     const aux = { ...newPokemon };
     aux[props] = value;
     setNewPokemon(aux);
@@ -70,7 +76,17 @@ export default function CreatePokemon() {
     // Eliminamos los valores vacíos de la matriz de tipos
     const selectedTypes = types.filter((type) => type !== "");
   
-    const errors = validateStats({ ...newPokemon, Types: selectedTypes });
+    // Si el valor de Height es diferente de 0, lo dividimos por 10
+    let height = newPokemon.Height;
+    if (height !== 0) {
+      height = parseFloat((height / 10).toFixed(1));
+    }
+  
+  
+    // Actualizamos el valor de Height en el objeto newPokemon antes de enviarlo
+    const pokemon = { ...newPokemon, Height: height, Types: selectedTypes };
+  
+    const errors = validateStats(pokemon);
     if (Object.keys(errors).length !== 0) {
       let error = "";
       for (const problem in errors) {
@@ -78,7 +94,6 @@ export default function CreatePokemon() {
       }
       alert(`You must correct this errors: \n\n${error}`);
     } else {
-      const pokemon = { ...newPokemon, Types: selectedTypes };
       axios
         .post("http://localhost:3001/pokemons", pokemon)
         .then(() => {
@@ -89,7 +104,7 @@ export default function CreatePokemon() {
           alert(error.response.data.error);
         });
     }
-  };  
+  };
   return (
     <div>
     <NavBar/>

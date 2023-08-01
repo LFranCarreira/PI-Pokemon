@@ -11,7 +11,7 @@ export default function LandingPage(){
             <Link to='/home'>
                 <button className={styles.buttonIng}>Let's go!</button>
             </Link>
-            <h2 className={styles.author}>LFranCarreira</h2>
+            <h2 className={styles.author}>By LFranCarreira</h2>
             </div>
         </div>
     )

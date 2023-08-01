@@ -1,40 +1,94 @@
-.bg{
+/* Estilos para tamaños de pantalla pequeños (hasta 767px) */
+@media (max-width: 767px) {
+  .image {
+    width: 60%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .buttonIng {
+    width: 100%;
+    font-size: 5vw;
+    margin-top: 20px;
+  }
+  .author{
+    margin-top: 40px;
+  }
+}
+
+/* Estilos para tamaños de pantalla medianos (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .image {
+    width: 60%;
+    max-width: 350px;
+    height: auto;
+  }
+
+  .buttonIng {
+    width: 40%;
+    font-size: 3vw;
+    margin-top: 20px;
+  }
+  .author{
+    margin-top: 40px;
+  }
+}
+
+/* Estilos para tamaños de pantalla grandes (a partir de 1024px) */
+@media (min-width: 1024px) {
+  .image {
+    width: 450px;
+    height: 400px;
+  }
+
+  .buttonIng {
+    width: 120%;
+    font-size: 2.5vw;
+  }
+  .author{
+    margin-top: 15%;
+  }
+}
+
+/* Estilos comunes para todos los tamaños de pantalla */
+.bg {
   background: url('../../Img/pokemonBackground.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   width: 100vw;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
 }
+
 .image {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 450px;
-  height: 400px;
 }
-.buttonIng{
-  width: 20vw;
-  height: 5vh;
 
+.buttonIng {
+  height: 120%;
+  width: 120%;
   background-color: #245bf1;
   color: rgb(184, 184, 184);
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651);
-  font-size: 1.5vw;
   font-weight: bold;
   cursor: pointer;
 }
-.buttonIng:hover{
+
+.buttonIng:hover {
   background-color: #f3cf3d4d;
 }
-.author{
-  font-family:Arial, Helvetica, sans-serif;
-  margin-top:440px;
+
+.author {
+  font-family: Arial, Helvetica, sans-serif;
   color: #245bf1;
+  margin-left: 25px;
 }

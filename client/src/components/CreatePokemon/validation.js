@@ -32,6 +32,9 @@ const validateStats=(inputs)=>{
     if (!inputs.hasOwnProperty('Types') || (inputs.Types.length < 1 || inputs.Types.length > 2)) {
       errors.Types = 'Types field must have between 1 and 2 elements.';
     }
+    if(inputs.Types.length===2 && inputs.Types[0]===inputs.Types[1]){
+      errors.Types = "Types cannot be the same"
+    }
   
       // Validation for Speed (if exists)
     if (

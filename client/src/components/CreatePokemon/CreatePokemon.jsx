@@ -6,7 +6,7 @@ import NavBar from "../HomePage/NavBar/NavBar"
 export default function CreatePokemon() {
   const [newPokemon, setNewPokemon] = useState({
     Name: "",
-    Image:"",
+    Image: "",
     Health: 250,
     Attack: 250,
     Defense: 250,
@@ -15,8 +15,8 @@ export default function CreatePokemon() {
     Weight: 0,
     Types: [""],
   });
-  const typesList = ["normal","fighting","flying","poison","ground","rock","bug","ghost","steel",
-  "grass","fire","electric","water","psychic","dragon","fairy","unknown","ice","shadow","dark"]
+  const typesList = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel",
+    "grass", "fire", "electric", "water", "psychic", "dragon", "fairy", "unknown", "ice", "shadow", "dark"];
   const [errors, setErrors] = useState({});
   const [types, setTypes] = useState([""]);
   const [selectedType1, setSelectedType1] = useState("");
@@ -45,15 +45,26 @@ export default function CreatePokemon() {
   const handlePokemonInfo = (event) => {
     const props = event.target.name;
     let value = event.target.value;
-  
-    // Convierte el valor del campo "Name" a minúsculas
+
     if (props === "Name") {
       value = value.toLowerCase();
     }
     const aux = { ...newPokemon };
     aux[props] = value;
+
+    // Validar el campo en tiempo real y actualizar los errores
+    const validationResult = validateStats({
+      ...newPokemon,
+      [props]: value,
+    });
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [props]: validationResult[props],
+    }));
+
     setNewPokemon(aux);
   };
+
   const handleBlur = (event) => {
     const input = event.target.name;
     const value = event.target.value;
@@ -61,50 +72,42 @@ export default function CreatePokemon() {
       ...newPokemon,
       [input]: value,
     });
-    const aux = { ...errors, [input]: validationResult };
-    if (validationResult !== true) {
-      setErrors(aux);
-    } else {
-      delete aux[input];
-      setErrors(aux);
-    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [input]: validationResult[input],
+    }));
   };
 
   const submitPokemon = (event) => {
     event.preventDefault();
-  
-    // Eliminamos los valores vacíos de la matriz de tipos
+
     const selectedTypes = types.filter((type) => type !== "");
-  
-    // Si el valor de Height es diferente de 0, lo dividimos por 10
     let height = newPokemon.Height;
     if (height !== 0) {
       height = parseFloat((height / 10).toFixed(1));
     }
-  
-  
-    // Actualizamos el valor de Height en el objeto newPokemon antes de enviarlo
+
     const pokemon = { ...newPokemon, Height: height, Types: selectedTypes };
-  
+
     const errors = validateStats(pokemon);
+    setErrors(errors);
+
     if (Object.keys(errors).length !== 0) {
-      let error = "";
-      for (const problem in errors) {
-        error = error + errors[problem] + "\n";
-      }
-      alert(`You must correct this errors: \n\n${error}`);
-    } else {
-      axios
-        .post("http://localhost:3001/pokemons", pokemon)
-        .then(() => {
-          alert("Your Pokemon is now alive!");
-          window.location.reload();
-        })
-        .catch((error) => {
-          alert(error.response.data.error);
-        });
+      return;
     }
+
+    axios
+      .post("http://localhost:3001/pokemons", pokemon)
+      .then(() => {
+        alert("Your Pokemon is now alive!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        alert(error.response.data.error);
+      });
   };
+
   return (
     <div>
     <NavBar/>
@@ -123,6 +126,7 @@ export default function CreatePokemon() {
               value={newPokemon.Name}
               onChange={handlePokemonInfo}
              />
+            {errors.Name && <span className={styles.error}>{errors.Name}</span>}
             </div>
             <div className={styles.options}>
             <span>Image: </span>
@@ -134,6 +138,7 @@ export default function CreatePokemon() {
                 value={newPokemon.Image}
                 onChange={handlePokemonInfo}
              />
+              {errors.Image && <span className={styles.error}>{errors.Image}</span>}
             </div>
             <div className={styles.options}>
             <span>Health: </span>
@@ -147,6 +152,7 @@ export default function CreatePokemon() {
               value={newPokemon.Health}
               onChange={handlePokemonInfo}
             />
+            {errors.Health && <span className={styles.error}>{errors.Health}</span>}
             <span>{newPokemon.Health}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -161,6 +167,7 @@ export default function CreatePokemon() {
               value={newPokemon.Attack}
               onChange={handlePokemonInfo}
             />
+            {errors.Attack && <span className={styles.error}>{errors.Attack}</span>}
             <span>{newPokemon.Attack}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -175,6 +182,7 @@ export default function CreatePokemon() {
               value={newPokemon.Defense}
               onChange={handlePokemonInfo}
             />
+            {errors.Defense && <span className={styles.error}>{errors.Defense}</span>}
             <span>{newPokemon.Defense}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -189,6 +197,7 @@ export default function CreatePokemon() {
               value={newPokemon.Speed}
               onChange={handlePokemonInfo}
             />
+            {errors.Speed && <span className={styles.error}>{errors.Speed}</span>}
           </div>
           <div className={styles.options}>
             <span>Height (optional) : </span>
@@ -202,6 +211,7 @@ export default function CreatePokemon() {
               value={newPokemon.Height}
               onChange={handlePokemonInfo}
             />
+            {errors.Height && <span className={styles.error}>{errors.Height}</span>}
           </div>
           <div className={styles.options}>
             <span>Weight (optional) : </span>
@@ -215,6 +225,7 @@ export default function CreatePokemon() {
               value={newPokemon.Weight}
               onChange={handlePokemonInfo}
             />
+            {errors.Weight && <span className={styles.error}>{errors.Weight}</span>}
           </div>
         </div>
         <div className={styles.options}>
@@ -236,10 +247,14 @@ export default function CreatePokemon() {
                 <option key={type} value={type}>
                   {type}
                 </option>
+                
               ))}
             </select>
+            {errors.Types && <span className={styles.error}>{errors.Types}</span>}
           </div>
-        <button type="submit">Create Pokemon</button>
+          <button type="submit">
+            Create Pokemon
+          </button>
       </form>
       </div>
     </div>

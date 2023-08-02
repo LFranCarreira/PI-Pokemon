@@ -1,5 +1,5 @@
 .container{
-  width: 430px;
+  width: 20vw;
   height: fit-content;  
   border-radius: 10px;
 }
@@ -11,11 +11,11 @@
   position: relative;
   background-color: white;
   width: fit-content;
-  left: 3%;
+  left: 4%;
   font-size: 100%;
   padding: 1%;
-  padding-left: 2%;
-  padding-right: 2%;
+  padding-left: 0.5vw;
+  padding-right:0.6vw;
   border-radius: 50vw;
 }
 .id:hover{
@@ -49,10 +49,10 @@
   cursor:default;
   }
   
-   .name {
-    font-size: 300%;
+  .name {
+    font-size:250%;
     font-weight: bold;
-  
+    width: 1vw;
   }
   .name:hover{
     cursor:default;
@@ -66,11 +66,6 @@
   .divType:hover{
     cursor:default;
   }
-  
-  .divType {
-    display: flex;
-  }
-  
   .divAttack,
   .divDefense {
     display: flex;
@@ -115,12 +110,12 @@
   }
   
   .image {
-    width: 240px;
-    height: 240px; 
+    width: 12vw;
+    height: 12vw; 
   }
   
   
-  .test {
+  .correctImg {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -137,4 +132,47 @@
     padding-top: 3%;
     display: flex;
     justify-content: space-between;
+  }
+  @media (max-width: 1000px) {
+    .name{
+      font-size: 150%;
+    }
+    .image{
+      width:25vw ;
+      height:25vw ;
+    }
+    .attack,
+    .defense{
+      font-size:140%;
+    }
+    .container{
+      width: 27vw;
+    }
+  }
+  @media (max-width: 500px){
+    .name{
+      font-size: 110%;
+      
+    }
+    .id{
+      font-size: 85%;
+    }
+    .spanHealth{
+      font-size: 80%;
+    }
+    .container{
+      width: 27vw;
+      height: 84vw;
+    }
+    .image{
+      width:23vw;
+      height: 23vw;
+    }
+    .attack,
+    .defense {
+      font-size: 110%;
+      font-weight: 500;
+      color: black;
+    }
+    
   }

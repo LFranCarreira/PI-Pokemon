@@ -11,15 +11,19 @@
     background-position: center;
   }
   .correctedError{
+    margin-top: 10%;
+    display: inline;
+    justify-content: center;
+    align-items: center;
     height: 500px;
     width: 300px;
     background-color: #333;
     border-radius: 20px;
-    margin-bottom: 300px;
+    margin-bottom: 10vw;
   }
   .sadPokemon {
-    width: 200px;
-    height: 200px;
+    width: 11em;
+    height: 11em;
     margin-top: 40px;
   }
   
@@ -43,6 +47,7 @@
     background-color: #ffc107; 
     border-radius: 5px;
     border: none;
+    margin-bottom: 3%;
     transition: background-color 0.3s ease;
   }
   

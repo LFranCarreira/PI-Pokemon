@@ -60,7 +60,7 @@ export default function Card(props) {
           <span className={styles.stats}>HP</span>
         </span>
       </div>
-      <div className={styles.test}>
+      <div className={styles.correctImg}>
         <div className={styles.divImage}>
           <Link to={"/detail/" + ID}>
           <img

@@ -10,15 +10,15 @@
     width: fit-content;
     height: fit-content;
 }
-@media (min-width: 300px){
+@media (max-width: 300px){
     .pokemon{
        padding-left: 10%;
        padding-right: 10%;
     }
   }
-  @media (min-width: 700px){
+  @media (max-width: 700px){
     .pokemon {
-        padding-left: 0%;
-       padding-right: 0%;
+      padding-left: 2%;
+      padding-right: 2%;
     }
   }

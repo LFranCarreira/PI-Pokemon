@@ -8,7 +8,7 @@ const newPokemon = async (pokemonData)=>{
       Name: Types,
     },
   });
-  let resultados = await Pokemons.findAll({
+  let results = await Pokemons.findAll({
     where: {
       Name: Name,
     },
@@ -24,13 +24,13 @@ const newPokemon = async (pokemonData)=>{
   await fetch(url)
     .then((response) => response.json())
     .then((pokemon) => {
-      resultados = pokemon
+      results = pokemon
     })
       .catch((error) => {
-       resultados = error
+       results = error
       });
   //if the id exists, throw error
-  if (resultados["id"]) throw new Error("That name belongs to another Pokemon");
+  if (results["id"]) throw new Error("That name belongs to another Pokemon");
   const newPokemon = await Pokemons.create({
     Name,
     Image,

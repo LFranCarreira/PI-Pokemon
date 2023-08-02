@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "./CreatePokemon.module.css"
 import NavBar from "../HomePage/NavBar/NavBar"
 export default function CreatePokemon() {
+  // State for the new Pokemon's information
   const [newPokemon, setNewPokemon] = useState({
     Name: "",
     Image: "",
@@ -15,13 +16,16 @@ export default function CreatePokemon() {
     Weight: 0,
     Types: [""],
   });
+  // List of available Pokemon types
   const typesList = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel",
     "grass", "fire", "electric", "water", "psychic", "dragon", "fairy", "unknown", "ice", "shadow", "dark"];
+  // State for managing form errors
   const [errors, setErrors] = useState({});
+    // State for managing selected types
   const [types, setTypes] = useState([""]);
   const [selectedType1, setSelectedType1] = useState("");
   const [selectedType2, setSelectedType2] = useState("");
-
+ // Handlers for selecting Pokemon types
   const handleSelectType1 = (event) => {
     const value = event.target.value;
     setSelectedType1(value);
@@ -41,7 +45,7 @@ export default function CreatePokemon() {
       return newTypes;
     });
   };
-
+   // Handler for updating Pokemon information and validating in real-time
   const handlePokemonInfo = (event) => {
     const props = event.target.name;
     let value = event.target.value;
@@ -52,7 +56,7 @@ export default function CreatePokemon() {
     const aux = { ...newPokemon };
     aux[props] = value;
 
-    // Validar el campo en tiempo real y actualizar los errores
+    // Validates in real time
     const validationResult = validateStats({
       ...newPokemon,
       [props]: value,
@@ -64,10 +68,11 @@ export default function CreatePokemon() {
 
     setNewPokemon(aux);
   };
-
+   // Handler for handling input blur and validation
   const handleBlur = (event) => {
-    const input = event.target.name;
-    const value = event.target.value;
+    const input = event.target.name;// Get the name attribute of the input that triggered the event
+    const value = event.target.value;// Get the value of the input
+    // Validate the input field and update the errors state
     const validationResult = validateStats({
       ...newPokemon,
       [input]: value,
@@ -78,10 +83,9 @@ export default function CreatePokemon() {
       [input]: validationResult[input],
     }));
   };
-
+    // Handler for submitting the new Pokemon
   const submitPokemon = (event) => {
     event.preventDefault();
-
     const selectedTypes = types.filter((type) => type !== "");
     let height = newPokemon.Height;
     if (height !== 0) {
@@ -148,11 +152,9 @@ export default function CreatePokemon() {
               max="500"
               name="Health"
               placeholder="Health"
-              onBlur={handleBlur}
               value={newPokemon.Health}
               onChange={handlePokemonInfo}
             />
-            {errors.Health && <span className={styles.error}>{errors.Health}</span>}
             <span>{newPokemon.Health}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -163,11 +165,9 @@ export default function CreatePokemon() {
               max="500"
               name="Attack"
               placeholder="Attack"
-              onBlur={handleBlur}
               value={newPokemon.Attack}
               onChange={handlePokemonInfo}
             />
-            {errors.Attack && <span className={styles.error}>{errors.Attack}</span>}
             <span>{newPokemon.Attack}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -178,11 +178,9 @@ export default function CreatePokemon() {
               max="500"
               name="Defense"
               placeholder="Defense"
-              onBlur={handleBlur}
               value={newPokemon.Defense}
               onChange={handlePokemonInfo}
             />
-            {errors.Defense && <span className={styles.error}>{errors.Defense}</span>}
             <span>{newPokemon.Defense}</span> {/* Display the current value */}
           </div>
           <div className={styles.options}>
@@ -193,11 +191,12 @@ export default function CreatePokemon() {
               max="500"
               name="Speed"
               placeholder="Speed"
-              onBlur={handleBlur}
               value={newPokemon.Speed}
               onChange={handlePokemonInfo}
             />
+            <div>
             {errors.Speed && <span className={styles.error}>{errors.Speed}</span>}
+            </div>
           </div>
           <div className={styles.options}>
             <span>Height (optional) : </span>
@@ -207,11 +206,12 @@ export default function CreatePokemon() {
               max="400"
               name="Height"
               placeholder="Height"
-              onBlur={handleBlur}
               value={newPokemon.Height}
               onChange={handlePokemonInfo}
             />
+            <div>
             {errors.Height && <span className={styles.error}>{errors.Height}</span>}
+            </div>
           </div>
           <div className={styles.options}>
             <span>Weight (optional) : </span>
@@ -221,11 +221,12 @@ export default function CreatePokemon() {
               max="400"
               name="Weight"
               placeholder="Weight"
-              onBlur={handleBlur}
               value={newPokemon.Weight}
               onChange={handlePokemonInfo}
             />
+            <div>
             {errors.Weight && <span className={styles.error}>{errors.Weight}</span>}
+            </div>
           </div>
         </div>
         <div className={styles.options}>

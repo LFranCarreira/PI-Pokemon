@@ -5,16 +5,16 @@ import styles from "./Loading.module.css";
 export default function Loading() {
   const history = useHistory();
 
-  // Definimos la función que redirigirá al usuario al "Home"
+  // function that redirects to home
   const redirectToHome = () => {
     history.push("/home");
   };
 
-  // Utilizamos useEffect para establecer el temporizador
+  // use the use efect to set the time
   useEffect(() => {
     const timeout = setTimeout(redirectToHome, 5000); 
 
-    // Limpiar el temporizador cuando el componente se desmonta o actualiza
+    // clear the timeout once it has finished
     return () => clearTimeout(timeout);
     //eslint-disable-next-line
   }, []);

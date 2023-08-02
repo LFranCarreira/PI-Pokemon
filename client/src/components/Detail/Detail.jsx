@@ -15,8 +15,10 @@ import WeightPokemon from "../../Img/WeightPokemon.jpg"
 
 export default function Detail() {
   const { id } = useParams();
+  //recieve the id
   const [detail, setDetail] = useState();
   useEffect(() => {
+    //gets the detail from the pokemon
     axios
       .get("http://localhost:3001/pokemons/" + id)
       .then((response) => {
@@ -63,8 +65,8 @@ export default function Detail() {
     Health,
   } = detail;
   const handleImageError = (e) => {
-    e.target.onerror = null; // Evita que se produzca un bucle si hay otro error
-    e.target.src = pokeballVacia; // Actualiza la src de la imagen para mostrar el pokeball vacío
+    e.target.onerror = null; // prevents a loop
+    e.target.src = pokeballVacia; // update the src to show the pokeball
   };
   return (
     <div>
@@ -83,7 +85,7 @@ export default function Detail() {
           <img
             className={styles.image}
             src={Image ? Image : pokeballVacia}
-            alt="foto pokemon"
+            alt="pokemon"
             onError={handleImageError}
           />
         </div>

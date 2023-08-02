@@ -1,25 +1,10 @@
 const validateStats=(inputs)=>{
     const errors = {};
-
-    // Validation for Attack (mandatory)
-    if (!inputs.hasOwnProperty('Attack') || inputs.Attack < 10 || inputs.Attack > 500) {
-      errors.Attack = 'Attack value must be between 10 and 500.';
-    }
     // Validation for Image (mandatory)
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     if(!inputs.hasOwnProperty("Image") || !urlRegex.test(inputs.Image)){
         errors.Image = "The image must be a link"
     }
-  
-    // Validation for Defense (mandatory)
-    if (!inputs.hasOwnProperty('Defense') || inputs.Defense < 10 || inputs.Defense > 500) {
-      errors.Defense = 'Defense value must be between 10 and 1000.';
-    }
-    // Validation for Health (mandatory)
-    if (!inputs.hasOwnProperty('Health') || inputs.Health < 10 || inputs.Health > 500) {
-        errors.Health = 'Health value must be between 10 and 1000.';
-    }
-  
     // Validation for Name field (mandatory)
     if (!inputs.hasOwnProperty('Name')) {
       errors.Name = 'Name field is mandatory.';

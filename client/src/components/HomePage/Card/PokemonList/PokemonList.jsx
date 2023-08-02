@@ -6,8 +6,11 @@ import { useState,useEffect } from "react";
 
 export default function PokemonList(props) {
   const { pokemons } = props;
+   // State to store the currently rendered pokemons
   const [pokemonsRender, setPokemonsRender] = useState([...pokemons])
+  // useEffect to update the rendered pokemons when the list of pokemons changes
   useEffect(() => {
+    // Slice the first 12 pokemons for initial rendering
     if (pokemons) setPokemonsRender(pokemons.slice(0,12));
     // eslint-disable-next-line
   }, [pokemons]);

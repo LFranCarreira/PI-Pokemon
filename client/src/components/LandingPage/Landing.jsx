@@ -4,6 +4,7 @@ import pokemonImg from '../../Img/pokemon-logo-png-1421.png'
 import styles from './Landing.module.css'
 
 export default function LandingPage(){
+    //LandingPage that allow to go to home
     return(
         <div className={styles.bg}>
             <div className={styles.container}>

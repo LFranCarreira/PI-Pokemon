@@ -1,4 +1,5 @@
 import styles from "./TypesTag.module.css";
+// Define a map of colors for different types of Pokémon
 const Colors = {
     bug: "#26de81",
     steel:"#3c434a",
@@ -21,6 +22,7 @@ const Colors = {
     water: "#0190FF",
   };
 export default function TypesTag(props) {
-    const { types } = props;
+    const { types } = props;// Destructure the 'types' prop
+      // Return a span element with the type label and background color based on the type
     return <span className={styles.default} style={{background:Colors[types] }}>{types}</span>;
   }

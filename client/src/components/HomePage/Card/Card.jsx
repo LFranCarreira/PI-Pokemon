@@ -6,6 +6,7 @@ import pokeballVacia from "../../../Img/pokeballvacia.png";
 
 export default function Card(props) {
   const { pokemon } = props;
+  //recieve the pokemon and destructures the properties
   const { Name, ID, Types, Attack, Image, Defense, Health } = pokemon;
   const Colors = {
     bug: "#26de81",
@@ -33,11 +34,11 @@ export default function Card(props) {
     return uuidRegex.test(id);
   }
   
-  // Lógica condicional para mostrar el elemento span solo si el ID no es un UUID
+  // only if it is an id
   const showID = !isUUID(ID);
   const handleImageError = (e) => {
-    e.target.onerror = null; // Evita que se produzca un bucle si hay otro error
-    e.target.src = pokeballVacia; // Actualiza la src de la imagen para mostrar el pokeball vacío
+    e.target.onerror = null; // prevents a loop
+    e.target.src = pokeballVacia; // updates the src
   };
   return (
     <div
@@ -67,7 +68,7 @@ export default function Card(props) {
               className={styles.image}
               src={Image ? Image : pokeballVacia}
               alt="pokemon"
-              onError={handleImageError} // Maneja el error si la imagen no se carga correctamente
+              onError={handleImageError} // correct the error
             />
           </Link>
         </div>

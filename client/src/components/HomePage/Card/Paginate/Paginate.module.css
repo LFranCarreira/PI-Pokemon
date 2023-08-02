@@ -24,16 +24,22 @@
     padding: 0.2% 1.2% 0.2% 1.2%;
     border-radius: 1.5vw;
   }
-  
-.span {
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.817);
-    background-color: rgba(0, 0, 0, 0.817);
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 200%;
-    margin: 0 10px;
-}
+  .customSelect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.753);
+    padding: 18px;
+    margin-top: 10px;
+    color: aliceblue;
+    font-weight: 500;
+    border-radius: 15px ;
+    font-size: 22px;
+    cursor: pointer;
+    outline: none;
+    
+  }
   
 .button:hover {
     font-weight: 600;

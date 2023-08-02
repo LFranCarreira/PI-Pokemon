@@ -45,7 +45,8 @@ const { Pokemons,Type } = sequelize.models;
 // Product.hasMany(Reviews);
 Pokemons.belongsToMany(Type,{through:"PokemonType"})
 Type.belongsToMany(Pokemons,{through:"PokemonType"})
-
+//Establece una relación de muchos a muchos entre dos modelos: Pokemons y Type.Esta relación 
+//se establece a través de una tabla intermedia llamada PokemonType, que actúa como una tabla de enlace para relacionar instancias de Pokemons con instancias de Type.
 module.exports = {
    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
    conn: sequelize, // para importart la conexión { conn } = require('./db.js');

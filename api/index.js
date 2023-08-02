@@ -2,6 +2,8 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Type } = require("./src/db.js")
 // Syncing all the models at once.
+
+//get all the types in order to create a pokemon without searching the types before
 const preLoadTypes = async () => {
   const types = await fetch("https://pokeapi.co/api/v2/type")
     .then((response) => response.json())

@@ -3,10 +3,12 @@ const URL = "https://pokeapi.co/api/v2/pokemon";
 const {Pokemons,Type}=require("../db")
 const filterPokemonApi = (pokemon) => {
   const types = [];
+  //push the types from the api
   pokemon["types"].forEach((element) => {
     types.push(element["type"]["name"]);
   });
   if(pokemon["id"]>=650){
+    //from the 650 sprite the gifs are no longer available
     return {
       ID: pokemon["id"],
       Name: pokemon["name"],
@@ -35,6 +37,7 @@ const filterPokemonApi = (pokemon) => {
 };
 
 const filterApiArray = (pokemonArray) => {
+  //take the pokemon a return it with the correct info
   const relevantInfo = pokemonArray.map((pokemon) =>
     filterPokemonApi(pokemon)
   );
@@ -43,6 +46,7 @@ const filterApiArray = (pokemonArray) => {
 const fetchPokemonsApi = async () => {
   const links = [];
   await axios.get(`${URL}/?offset=0&limit=100`
+  //take the first 100 pokemons from the api and we get their url with the info
   )
     .then((response) => {
       const data = response.data;
@@ -55,19 +59,20 @@ const fetchPokemonsApi = async () => {
     });
 
   const promises = links.map((url) => axios.get(url));
+  //we get all the first 100 pokemons with their info
   const responses = await Promise.all(promises);
   const data = await Promise.all(responses.map((response) => response.data));
   return filterApiArray(data);
 };
 const filterPokemonDB = (pokemon) => {
   const types = [];
-  pokemon.Types.forEach((element) => types.push(element.Name));
-  pokemon.Types = types; // Cambiamos 'Type' por 'Types'
+  pokemon.Types.forEach((element) => types.push(element.Name));// we push the types
+  pokemon.Types = types; // and we change 'Type' for 'Types'
   return pokemon;
 };
 
 const fetchPokemonsDB = async () => {
-  const PokemonsBD = await Pokemons.findAll({
+  const PokemonsDB = await Pokemons.findAll({ //we get the pokemons that are in the DB
     include: [
       {
         model: Type,
@@ -78,10 +83,11 @@ const fetchPokemonsDB = async () => {
       },
     ],
   });
-  const correctedPokemonsBD = PokemonsBD.map((item) => item.dataValues);
-  const formattedPokemons = correctedPokemonsBD.map((pokemon) =>
+  const correctedPokemonsDB = PokemonsDB.map((item) => item.dataValues);
+  const formattedPokemons = correctedPokemonsDB.map((pokemon) =>
     filterPokemonDB(pokemon)
   );
+  //We get the pokemons and correct how the types are gotten
   return formattedPokemons;
 };
 
@@ -89,13 +95,17 @@ const fetchPokemonsDB = async () => {
 
 
 const getPokemons = async () => {
-  const PokemonsBD = await fetchPokemonsDB();
+  const PokemonsDB = await fetchPokemonsDB();
+  //we get the pokemons from the DB(all)
   const PokemonsApi = await fetchPokemonsApi();
-  const Pokemons = [...PokemonsBD, ...PokemonsApi];
+  //we get the pokemons from the API(the first 100)
+  const Pokemons = [...PokemonsDB, ...PokemonsApi];
+  //we return all the pokemons from db and api
   return Pokemons;
 };
 const searchPokemonByName = async (name) => {
   const pk = await Pokemons.findAll({
+    //first we try to finde the pokemon from the DB, because they are less in there
     where: { Name: name },
     include: [
       {
@@ -107,8 +117,9 @@ const searchPokemonByName = async (name) => {
       },
     ],
   });
-
+  //if there was a pokemon from the DB that matches the name, we filter it and return it
   if (pk.length > 0) return filterPokemonDB(pk[0].dataValues);
+  //if not, we try to find it in the api,filter it and return it, if we cannot find it, we return an error
   else {
     try {
       const response = await axios.get(`${URL}/${name}`);

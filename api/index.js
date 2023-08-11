@@ -1,6 +1,7 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { Type } = require("./src/db.js");
+require("dotenv").config();
 const port = process.env.PORT || 3001
 // Syncing all the models at once.
 
@@ -9,7 +10,7 @@ const preLoadTypes = async () => {
   const types = await fetch("https://pokeapi.co/api/v2/type")
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => {
+    .catch((error) => { 
       throw Error(error.message);
     });
   types.results.forEach((type) => {
@@ -27,7 +28,7 @@ conn
       } catch (error) {
         console.log(error);
       }
-      console.log(`Server raised in port: ${port}`);
+      console.log(`Server raised in port: http://localhost:${port}/pokemons`);
       
     });
   })

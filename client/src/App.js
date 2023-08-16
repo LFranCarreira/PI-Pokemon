@@ -7,8 +7,7 @@ import Error404 from './components/Error404/Error404';
 import Loading from './components/Loading/Loading';
 import CreatePokemon from './components/CreatePokemon/CreatePokemon';
 import Detail from './components/Detail/Detail';
-import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3001/";
+
 function App() {
   return (
     <BrowserRouter>

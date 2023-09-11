@@ -28,7 +28,7 @@ conn
       } catch (error) {
         console.log(error);
       }
-      console.log(`Server raised in port: http://localhost:${port}/pokemons`);
+      console.log(`Server raised in port:`, port);
       
     });
   })

@@ -1,8 +1,11 @@
-const { getPokemons,searchPokemonByName }=require("../controllers/getAllPokemons")
-const STATUS_ERROR=404
-const STATUS_OK=200
-const getAllPokemons=async (req,res)=>{
-  const {name} = req.query;
+const {
+  getPokemons,
+  searchPokemonByName,
+} = require('../controllers/getAllPokemons');
+const STATUS_ERROR = 404;
+const STATUS_OK = 200;
+const getAllPokemons = async (req, res) => {
+  const { name } = req.query;
   //if it recibes a name from query, it searches the name from the DB or API if the name doesn't exist it catches an error,
   //if the name does not exist it gets the first 100 pokemons from the api, if it fails, it catches an error
   if (name) {
@@ -20,5 +23,5 @@ const getAllPokemons=async (req,res)=>{
       res.status(STATUS_ERROR).json({ error: error.message });
     }
   }
-}
-module.exports={getAllPokemons}
+};
+module.exports = { getAllPokemons };

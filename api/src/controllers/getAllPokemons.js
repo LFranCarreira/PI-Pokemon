@@ -1,57 +1,60 @@
-const axios = require("axios");
-const URL = "https://pokeapi.co/api/v2/pokemon";
-const {Pokemons,Type}=require("../db")
+const axios = require('axios');
+const URL = 'https://pokeapi.co/api/v2/pokemon';
+const { Pokemons, Type } = require('../db');
 const filterPokemonApi = (pokemon) => {
   const types = [];
   //push the types from the api
-  pokemon["types"].forEach((element) => {
-    types.push(element["type"]["name"]);
+  pokemon['types'].forEach((element) => {
+    types.push(element['type']['name']);
   });
-  if(pokemon["id"]>=650){
+  if (pokemon['id'] >= 650) {
     //from the 650 sprite the gifs are no longer available
     return {
-      ID: pokemon["id"],
-      Name: pokemon["name"],
-      Health: pokemon["stats"][0]["base_stat"],
-      Attack: pokemon["stats"][1]["base_stat"],
-      Defense: pokemon["stats"][2]["base_stat"],
-      Speed: pokemon["stats"][5]["base_stat"],
-      Image: pokemon["sprites"]["front_default"],
-      Height: pokemon["height"],
-      Weight: pokemon["weight"],
+      ID: pokemon['id'],
+      Name: pokemon['name'],
+      Health: pokemon['stats'][0]['base_stat'],
+      Attack: pokemon['stats'][1]['base_stat'],
+      Defense: pokemon['stats'][2]['base_stat'],
+      Speed: pokemon['stats'][5]['base_stat'],
+      Image: pokemon['sprites']['front_default'],
+      Height: pokemon['height'],
+      Weight: pokemon['weight'],
       Types: types,
     };
   }
   return {
-      ID: pokemon["id"],
-      Name: pokemon["name"],
-      Health: pokemon["stats"][0]["base_stat"],
-      Attack: pokemon["stats"][1]["base_stat"],
-      Defense: pokemon["stats"][2]["base_stat"],
-      Speed: pokemon["stats"][5]["base_stat"],
-      Image: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
-      Height: pokemon["height"],
-      Weight: pokemon["weight"],
-      Types: types,
-    };
+    ID: pokemon['id'],
+    Name: pokemon['name'],
+    Health: pokemon['stats'][0]['base_stat'],
+    Attack: pokemon['stats'][1]['base_stat'],
+    Defense: pokemon['stats'][2]['base_stat'],
+    Speed: pokemon['stats'][5]['base_stat'],
+    Image:
+      pokemon['sprites']['versions']['generation-v']['black-white']['animated'][
+        'front_default'
+      ],
+    Height: pokemon['height'],
+    Weight: pokemon['weight'],
+    Types: types,
+  };
 };
 
 const filterApiArray = (pokemonArray) => {
   //take the pokemon a return it with the correct info
-  const relevantInfo = pokemonArray.map((pokemon) =>
-    filterPokemonApi(pokemon)
-  );
+  const relevantInfo = pokemonArray.map((pokemon) => filterPokemonApi(pokemon));
   return relevantInfo;
 };
 const fetchPokemonsApi = async () => {
   const links = [];
-  await axios.get(`${URL}/?offset=0&limit=100`
-  //take the first 100 pokemons from the api and we get their url with the info
-  )
+  await axios
+    .get(
+      `${URL}/?offset=0&limit=100`
+      //take the first 100 pokemons from the api and we get their url with the info
+    )
     .then((response) => {
       const data = response.data;
       data.results.map((pokemon) => {
-        links.push(pokemon["url"]);
+        links.push(pokemon['url']);
       });
     })
     .catch((error) => {
@@ -66,17 +69,18 @@ const fetchPokemonsApi = async () => {
 };
 const filterPokemonDB = (pokemon) => {
   const types = [];
-  pokemon.Types.forEach((element) => types.push(element.Name));// we push the types
+  pokemon.Types.forEach((element) => types.push(element.Name)); // we push the types
   pokemon.Types = types; // and we change 'Type' for 'Types'
   return pokemon;
 };
 
 const fetchPokemonsDB = async () => {
-  const PokemonsDB = await Pokemons.findAll({ //we get the pokemons that are in the DB
+  const PokemonsDB = await Pokemons.findAll({
+    //we get the pokemons that are in the DB
     include: [
       {
         model: Type,
-        attributes: ["Name"],
+        attributes: ['Name'],
         through: {
           attributes: [],
         },
@@ -90,9 +94,6 @@ const fetchPokemonsDB = async () => {
   //We get the pokemons and correct how the types are gotten
   return formattedPokemons;
 };
-
-
-
 
 const getPokemons = async () => {
   const PokemonsDB = await fetchPokemonsDB();
@@ -110,7 +111,7 @@ const searchPokemonByName = async (name) => {
     include: [
       {
         model: Type,
-        attributes: ["Name"],
+        attributes: ['Name'],
         through: {
           attributes: [],
         },
@@ -130,4 +131,9 @@ const searchPokemonByName = async (name) => {
     }
   }
 };
-module.exports={getPokemons,searchPokemonByName,filterPokemonApi,filterPokemonDB}
+module.exports = {
+  getPokemons,
+  searchPokemonByName,
+  filterPokemonApi,
+  filterPokemonDB,
+};

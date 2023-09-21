@@ -1,29 +1,28 @@
-const axios = require("axios");
-const URL = "https://pokeapi.co/api/v2/pokemon";
-const {Pokemons,Type}=require("./../db");
-const { filterPokemonApi, filterPokemonDB } = require("./getAllPokemons");
-
+const axios = require('axios');
+const URL = 'https://pokeapi.co/api/v2/pokemon';
+const { Pokemons, Type } = require('./../db');
+const { filterPokemonApi, filterPokemonDB } = require('./getAllPokemons');
 
 const getPokemonById = async (id) => {
-  const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-//regex to know if the id should be search in the DB or API
-  if (typeof id === "string" && uuidRegex.test(id)) {
+  const uuidRegex =
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  //regex to know if the id should be search in the DB or API
+  if (typeof id === 'string' && uuidRegex.test(id)) {
     //if it is from the DB, we search in there and get it back, if the search is from an uuid but it is not in the DB, it catches on an error
     const result = await Pokemons.findOne({
       where: { ID: id },
       include: [
         {
           model: Type,
-          attributes: ["Name"],
+          attributes: ['Name'],
           through: {
             attributes: [],
           },
         },
       ],
     });
-    if (result === null)
-      throw new Error(`Pokemon with ID ${id} not found`);
-      //returns the pokemon with the filter and the data values
+    if (result === null) throw new Error(`Pokemon with ID ${id} not found`);
+    //returns the pokemon with the filter and the data values
     return filterPokemonDB(result.dataValues);
   } else {
     try {
@@ -36,4 +35,4 @@ const getPokemonById = async (id) => {
     }
   }
 };
-module.exports={getPokemonById}
+module.exports = { getPokemonById };

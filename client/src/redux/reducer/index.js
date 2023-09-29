@@ -1,4 +1,4 @@
-import { GET_POKEMONS } from "../actions/types";
+import { GET_POKEMONS } from '../actions/types';
 
 const initialState = {
   pokemons: [],
@@ -10,7 +10,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         pokemons: payload,
-      }
+      };
     default:
       return {
         ...state,
@@ -18,4 +18,4 @@ const rootReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default rootReducer
+export default rootReducer;

@@ -2,15 +2,15 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME , DB_PORT } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
 const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-   {
-      dialectModule: require('pg'),
-      logging: false, // set to console.log to see the raw SQL queries
-      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-   }
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  {
+    dialectModule: require('pg'),
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  }
 );
 // const sequelize = new Sequelize(
 //    DB_DEPLOY,
@@ -32,37 +32,35 @@ const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
-   .filter(
-      (file) =>
-         file.indexOf('.') !== 0 &&
-         file !== basename &&
-         file.slice(-3) === '.js'
-   )
-   .forEach((file) => {
-      modelDefiners.push(require(path.join(__dirname, '/models', file)));
-   });
+  .filter(
+    (file) =>
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+  )
+  .forEach((file) => {
+    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+  });
 
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
-   entry[0][0].toUpperCase() + entry[0].slice(1),
-   entry[1],
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemons,Type } = sequelize.models;
+const { Pokemons, Type } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Pokemons.belongsToMany(Type,{through:"PokemonType"})
-Type.belongsToMany(Pokemons,{through:"PokemonType"})
-//Establece una relación de muchos a muchos entre dos modelos: Pokemons y Type.Esta relación 
+Pokemons.belongsToMany(Type, { through: 'PokemonType' });
+Type.belongsToMany(Pokemons, { through: 'PokemonType' });
+//Establece una relación de muchos a muchos entre dos modelos: Pokemons y Type.Esta relación
 //se establece a través de una tabla intermedia llamada PokemonType, que actúa como una tabla de enlace para relacionar instancias de Pokemons con instancias de Type.
 module.exports = {
-   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };

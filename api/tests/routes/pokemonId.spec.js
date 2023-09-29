@@ -1,6 +1,6 @@
 const request = require('supertest');
 const { expect } = require('chai');
-const app = require('../../src/app.js'); 
+const app = require('../../src/app.js');
 
 describe('GET /pokemons/:idPokemon', () => {
   it('should respond with status 200 when a valid ID is provided', (done) => {
@@ -26,8 +26,6 @@ describe('GET /pokemons/:idPokemon', () => {
   });
 
   it('should respond with status 404 when an invalid ID is provided', (done) => {
-    request(app)
-      .get('/pokemons/1020')
-      .expect(404, done);
+    request(app).get('/pokemons/1020').expect(404, done);
   });
 });

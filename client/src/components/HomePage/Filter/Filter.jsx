@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import styles from "./Filter.module.css";
 
 export default function Filter(props) {
-    // Destructure props
+  // Destructure props
   const { pokemons, setOrderedPokemons } = props;
-   // State to manage filter and sorting options
+
+  // State to manage filter and sorting options
   const [Order, setOrder] = useState("Ascending");
   const [OrderBy, setOrderBy] = useState("ID");
   const [Show, setShow] = useState("Show all");
+
   // Effect to filter and sort the pokemons based on selected options
   useEffect(() => {
     filterAndSortPokemons();
     // eslint-disable-next-line
   }, [Order, OrderBy, Show, pokemons]);
+
   // Regular expression to validate UUID format
   const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-   // Function to filter and sort the pokemons based on selected options
+
+  // Function to filter and sort the pokemons based on selected options
   const filterAndSortPokemons = () => {
     let filteredPokemons = [...pokemons];
 
@@ -56,7 +60,8 @@ export default function Filter(props) {
     // Update the ordered pokemons in parent component state
     setOrderedPokemons(filteredPokemons);
   };
-    // Event handlers for select input changes
+  
+  // Event handlers for select input changes
   const handleOrderChange = (event) => setOrder(event.target.value);
   const handleSortByChange = (event) => setOrderBy(event.target.value);
   const handleShowChange = (event) => setShow(event.target.value);

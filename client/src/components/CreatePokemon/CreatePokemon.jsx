@@ -53,6 +53,7 @@ export default function CreatePokemon() {
     if (props === "Name") {
       value = value.toLowerCase();
     }
+
     const aux = { ...newPokemon };
     aux[props] = value;
 
@@ -61,6 +62,7 @@ export default function CreatePokemon() {
       ...newPokemon,
       [props]: value,
     });
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       [props]: validationResult[props],
@@ -68,11 +70,13 @@ export default function CreatePokemon() {
 
     setNewPokemon(aux);
   };
+
    // Handler for handling input blur and validation
   const handleBlur = (event) => {
     const input = event.target.name;// Get the name attribute of the input that triggered the event
     const value = event.target.value;// Get the value of the input
-    // Validate the input field and update the errors state
+
+  // Validate the input field and update the errors state
     const validationResult = validateStats({
       ...newPokemon,
       [input]: value,
@@ -83,7 +87,8 @@ export default function CreatePokemon() {
       [input]: validationResult[input],
     }));
   };
-    // Handler for submitting the new Pokemon
+
+  // Handler for submitting the new Pokemon
   const submitPokemon = (event) => {
     event.preventDefault();
     const selectedTypes = types.filter((type) => type !== "");

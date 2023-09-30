@@ -6,8 +6,10 @@ import pokeballVacia from "../../../Img/pokeballvacia.png";
 
 export default function Card(props) {
   const { pokemon } = props;
-  //recieve the pokemon and destructures the properties
+
+  // Recieve the pokemon and destructures the properties
   const { Name, ID, Types, Attack, Image, Defense, Health } = pokemon;
+
   const Colors = {
     bug: "#26de81",
     steel:"#3c434a",
@@ -29,6 +31,7 @@ export default function Card(props) {
     rock: "#838579",
     water: "#0190FF",
   };
+
   function isUUID(id) {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     return uuidRegex.test(id);
@@ -36,10 +39,12 @@ export default function Card(props) {
   
   // only if it is an id
   const showID = !isUUID(ID);
+
   const handleImageError = (e) => {
     e.target.onerror = null; // prevents a loop
     e.target.src = pokeballVacia; // updates the src
   };
+
   return (
     <div
       className={styles.container}
@@ -49,7 +54,6 @@ export default function Card(props) {
         }`,
       }}
       key={ID}
-      
     >
       <div className={styles.title}>
         {showID && <span className={styles.id}>{ID}</span>}

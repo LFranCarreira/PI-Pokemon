@@ -15,8 +15,10 @@ import WeightPokemon from "../../Img/WeightPokemon.jpg"
 
 export default function Detail() {
   const { id } = useParams();
-  //recieve the id
+  //recieve the id  
+
   const [detail, setDetail] = useState();
+
   useEffect(() => {
     //gets the detail from the pokemon
     axios
@@ -52,6 +54,7 @@ export default function Detail() {
     rock: "#838579",
     water: "#0190FF",
   };
+
   const {
     ID,
     Name,
@@ -64,10 +67,12 @@ export default function Detail() {
     Image,
     Health,
   } = detail;
+
   const handleImageError = (e) => {
     e.target.onerror = null; // prevents a loop
     e.target.src = pokeballVacia; // update the src to show the pokeball
   };
+  
   return (
     <div>
     <NavBar/>

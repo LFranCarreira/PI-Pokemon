@@ -43,6 +43,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
+
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
@@ -55,11 +56,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Pokemons, Type } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 Pokemons.belongsToMany(Type, { through: 'PokemonType' });
 Type.belongsToMany(Pokemons, { through: 'PokemonType' });
-//Establece una relación de muchos a muchos entre dos modelos: Pokemons y Type.Esta relación
+
 //se establece a través de una tabla intermedia llamada PokemonType, que actúa como una tabla de enlace para relacionar instancias de Pokemons con instancias de Type.
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

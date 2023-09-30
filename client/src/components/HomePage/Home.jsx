@@ -8,6 +8,7 @@ import { getPokemons } from "../../redux/actions/actions";
 
 // The Home component
 export default function Home() {
+  
   // Get the list of pokemons from the Redux store using useSelector
   const pokemons = useSelector((state) => state.pokemons);
 

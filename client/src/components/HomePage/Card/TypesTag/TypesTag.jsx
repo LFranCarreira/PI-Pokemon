@@ -21,8 +21,9 @@ const Colors = {
     rock: "#838579",
     water: "#0190FF",
   };
+
 export default function TypesTag(props) {
-    const { types } = props;// Destructure the 'types' prop
+    const { types } = props;  // Destructure the 'types' prop
       // Return a span element with the type label and background color based on the type
     return <span className={styles.default} style={{background:Colors[types] }}>{types}</span>;
   }

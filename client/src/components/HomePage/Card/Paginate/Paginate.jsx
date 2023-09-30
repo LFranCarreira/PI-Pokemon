@@ -52,6 +52,7 @@ export default function Paginate(props) {
   return (
     <div className={styles.container}>
       <div className={styles.paginate}>
+
         {/* Button to go to the previous page */}
         {pag > 0 && (
           <button onClick={prevPage} className={styles.button}>
@@ -73,6 +74,7 @@ export default function Paginate(props) {
           ))}
           </select>  
         </div>
+        
         {/* Button to go to the next page */}
         {pag < maxpage - 1 && (
           <button onClick={nextPage} className={styles.button}>

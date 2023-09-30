@@ -9,10 +9,12 @@ export default function NavBar() {
   const [search, setSearch] = useState("");
 
   const history = useHistory();
-// Event handler for input change
+
+  // Event handler for input change
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
+
   // Function to search for a Pokemon
   const searchPokemon = () => {
     if (search === "") {
@@ -23,7 +25,7 @@ export default function NavBar() {
       axios
         .get("http://localhost:3001/pokemons?name=" + search.toLowerCase())
         .then((response) => {
-           // Redirect to the detail page of the found Pokemon
+          // Redirect to the detail page of the found Pokemon
           history.push("/detail/" + response.data.ID);
         })
         .catch((error) => {
@@ -31,9 +33,10 @@ export default function NavBar() {
           const status = error.response.status;
           history.push(`/Error?message=${message}status${status}`);
         });
-    }
-  };
-   // Function to navigate to the Create Pokemon page
+      }
+    };
+    
+  // Function to navigate to the Create Pokemon page
   const createPokemon = () => {
     history.push("/createPokemon");
   };
